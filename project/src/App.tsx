@@ -58,17 +58,158 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Robot Image */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative">
-              <img 
-                src="/standingrobotpic.png" 
-                alt="AI Robot" 
-                className="w-64 h-64 object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 to-transparent rounded-full blur-xl"></div>
+          {/* Advanced AI Robot Assistant with Dynamic Elements */}
+<div className="mb-8 flex justify-center">
+  <div className="relative">
+    <div className="w-80 h-80 flex flex-col items-center justify-center relative group">
+      
+      {/* AI Data Streams flowing around robot */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-8 left-4 flex flex-col gap-1 animate-pulse">
+          <div className="w-12 h-0.5 bg-cyan-400 animate-pulse delay-100"></div>
+          <div className="w-8 h-0.5 bg-blue-400 animate-pulse delay-300"></div>
+          <div className="w-10 h-0.5 bg-violet-400 animate-pulse delay-500"></div>
+        </div>
+        
+        <div className="absolute top-16 right-8 flex flex-col gap-1 animate-pulse delay-700">
+          <div className="w-10 h-0.5 bg-green-400 animate-pulse"></div>
+          <div className="w-14 h-0.5 bg-cyan-400 animate-pulse delay-200"></div>
+          <div className="w-6 h-0.5 bg-blue-400 animate-pulse delay-400"></div>
+        </div>
+
+        {/* Floating AI indicators */}
+        <div className="absolute top-12 left-16 text-xs text-cyan-400 animate-bounce delay-1000">AI</div>
+        <div className="absolute bottom-20 right-12 text-xs text-violet-400 animate-bounce delay-1500">ML</div>
+        <div className="absolute top-20 right-20 text-xs text-blue-400 animate-bounce delay-2000">NLP</div>
+      </div>
+
+      {/* Main Robot Container with hover interactions */}
+      <div className="relative transform group-hover:scale-110 transition-all duration-700 cursor-pointer">
+        
+        {/* Robot Head with AI Processing Indicator */}
+        <div className="relative mb-3">
+          <div className="w-20 h-20 bg-gradient-to-br from-blue-400 via-cyan-400 to-violet-400 rounded-2xl shadow-2xl shadow-blue-500/60 relative overflow-hidden animate-pulse">
+            {/* AI Processing Bar */}
+            <div className="absolute top-1 left-1 right-1 h-1 bg-gray-700 rounded-full overflow-hidden">
+              <div className="w-full h-full bg-gradient-to-r from-green-400 to-cyan-400 rounded-full animate-pulse"></div>
+              <div className="absolute top-0 left-0 w-1/3 h-full bg-white/30 rounded-full animate-pulse delay-500"></div>
+            </div>
+            
+            {/* Dynamic Eyes with AI glow */}
+            <div className="flex justify-between items-center pt-4 px-4">
+              <div className="relative group">
+                <div className="w-4 h-4 bg-white rounded-full shadow-lg shadow-cyan-400/50 group-hover:bg-cyan-100 transition-colors"></div>
+                <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping m-1 group-hover:animate-pulse"></div>
+                <div className="absolute inset-0 w-1 h-1 bg-white rounded-full m-1.5 animate-pulse delay-200"></div>
+              </div>
+              <div className="relative group">
+                <div className="w-4 h-4 bg-white rounded-full shadow-lg shadow-cyan-400/50 group-hover:bg-cyan-100 transition-colors"></div>
+                <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping m-1 delay-150 group-hover:animate-pulse"></div>
+                <div className="absolute inset-0 w-1 h-1 bg-white rounded-full m-1.5 animate-pulse delay-400"></div>
+              </div>
+            </div>
+            
+            {/* AI Voice Indicator */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
+              <div className="flex gap-0.5 items-end">
+                <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
+                <div className="w-1 h-2 bg-cyan-400 rounded-full animate-pulse delay-100"></div>
+                <div className="w-1 h-3 bg-cyan-400 rounded-full animate-pulse delay-200"></div>
+                <div className="w-1 h-2 bg-cyan-400 rounded-full animate-pulse delay-300"></div>
+                <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-400"></div>
+              </div>
             </div>
           </div>
+          
+          {/* AI Signal Antenna */}
+          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-gradient-to-t from-cyan-400 to-blue-300 rounded-full animate-pulse">
+            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyan-300 rounded-full animate-ping"></div>
+            {/* Signal waves */}
+            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 border border-cyan-400/30 rounded-full animate-ping delay-500"></div>
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 border border-cyan-400/20 rounded-full animate-ping delay-1000"></div>
+          </div>
+        </div>
+
+        {/* Enhanced Robot Body with AI Core */}
+        <div className="w-24 h-32 bg-gradient-to-br from-violet-400 via-blue-500 to-cyan-500 rounded-2xl shadow-2xl shadow-violet-500/60 relative overflow-hidden animate-bounce group-hover:animate-none">
+          
+          {/* AI Core Reactor */}
+          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-12 h-8 bg-gradient-to-r from-cyan-300 via-blue-200 to-violet-300 rounded-lg shadow-inner relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-pulse"></div>
+            {/* Core energy patterns */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-6 h-6 border-2 border-blue-600 rounded-full animate-spin"></div>
+              <div className="absolute w-4 h-4 border border-cyan-400 rounded-full animate-spin-reverse-slow"></div>
+              <div className="absolute w-2 h-2 bg-white rounded-full animate-ping"></div>
+            </div>
+          </div>
+
+          {/* Status Indicators */}
+          <div className="absolute top-14 left-1/2 transform -translate-x-1/2 flex gap-1">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+            <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping delay-300"></div>
+            <div className="w-2 h-2 bg-violet-400 rounded-full animate-ping delay-600"></div>
+          </div>
+
+          {/* Interactive Arms with AI sensors */}
+          <div className="absolute -left-8 top-6 transform origin-top rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500">
+            <div className="w-5 h-16 bg-gradient-to-b from-blue-400 via-violet-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/40 relative">
+              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-gray-300 rounded-full"></div>
+              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full animate-pulse delay-700">
+                <div className="absolute inset-1 border border-white/50 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="absolute -right-8 top-6 transform origin-top -rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500">
+            <div className="w-5 h-16 bg-gradient-to-b from-blue-400 via-violet-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/40 relative">
+              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-gray-300 rounded-full"></div>
+              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full animate-pulse delay-900">
+                <div className="absolute inset-1 border border-white/50 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Advanced Legs with hover propulsion */}
+        <div className="flex justify-center gap-3 mt-2 group-hover:mt-1 transition-all duration-300">
+          <div className="relative">
+            <div className="w-4 h-20 bg-gradient-to-b from-violet-400 via-blue-500 to-cyan-500 rounded-full shadow-lg shadow-violet-500/40 animate-pulse delay-1100">
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-5 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+            <div className="absolute -bottom-1 -left-1 w-6 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg shadow-blue-500/40"></div>
+            {/* Hover propulsion effect */}
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-1 bg-cyan-400/50 rounded-full blur-sm group-hover:animate-pulse"></div>
+          </div>
+          <div className="relative">
+            <div className="w-4 h-20 bg-gradient-to-b from-violet-400 via-blue-500 to-cyan-500 rounded-full shadow-lg shadow-violet-500/40 animate-pulse delay-1300">
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-5 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+            <div className="absolute -bottom-1 -left-1 w-6 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg shadow-blue-500/40"></div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-1 bg-cyan-400/50 rounded-full blur-sm group-hover:animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating AI Assistant Text */}
+      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <div className="bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full border border-cyan-400/30">
+          <span className="text-xs text-cyan-300">AI Assistant Ready</span>
+        </div>
+      </div>
+    </div>
+    
+    {/* Enhanced Multi-dimensional Glow Effects */}
+    <div className="absolute inset-0 bg-gradient-to-t from-blue-500/40 via-violet-500/25 to-cyan-500/30 rounded-full blur-3xl animate-pulse -z-10"></div>
+    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-transparent to-violet-500/30 rounded-full blur-2xl animate-pulse delay-1000 -z-10"></div>
+    <div className="absolute -inset-12 bg-gradient-to-r from-blue-500/15 via-violet-500/15 to-cyan-500/15 rounded-full blur-3xl animate-pulse delay-2000 -z-10"></div>
+    
+    {/* Dynamic Orbital Systems */}
+    <div className="absolute inset-0 border border-cyan-400/20 rounded-full animate-spin-slow -z-10"></div>
+    <div className="absolute inset-4 border border-blue-400/15 rounded-full animate-spin-reverse-slow -z-10"></div>
+    <div className="absolute inset-8 border border-violet-400/10 rounded-full animate-spin-slow -z-10" style={{animationDuration: '15s'}}></div>
+  </div>
+</div>
 
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
