@@ -58,156 +58,213 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Advanced AI Robot Assistant with Dynamic Elements */}
+          {/* Premium 3D-Style CSS Robot with Metallic Finish */}
 <div className="mb-8 flex justify-center">
-  <div className="relative">
-    <div className="w-80 h-80 flex flex-col items-center justify-center relative group">
+  <div className="relative group cursor-pointer">
+    <div className="w-96 h-96 flex flex-col items-center justify-center relative perspective-1000">
       
-      {/* AI Data Streams flowing around robot */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-8 left-4 flex flex-col gap-1 animate-pulse">
-          <div className="w-12 h-0.5 bg-cyan-400 animate-pulse delay-100"></div>
-          <div className="w-8 h-0.5 bg-blue-400 animate-pulse delay-300"></div>
-          <div className="w-10 h-0.5 bg-violet-400 animate-pulse delay-500"></div>
-        </div>
-        
-        <div className="absolute top-16 right-8 flex flex-col gap-1 animate-pulse delay-700">
-          <div className="w-10 h-0.5 bg-green-400 animate-pulse"></div>
-          <div className="w-14 h-0.5 bg-cyan-400 animate-pulse delay-200"></div>
-          <div className="w-6 h-0.5 bg-blue-400 animate-pulse delay-400"></div>
-        </div>
-
-        {/* Floating AI indicators */}
-        <div className="absolute top-12 left-16 text-xs text-cyan-400 animate-bounce delay-1000">AI</div>
-        <div className="absolute bottom-20 right-12 text-xs text-violet-400 animate-bounce delay-1500">ML</div>
-        <div className="absolute top-20 right-20 text-xs text-blue-400 animate-bounce delay-2000">NLP</div>
+      {/* AI Data Network Background */}
+      <div className="absolute inset-0 overflow-hidden opacity-30">
+        <svg className="w-full h-full animate-pulse" viewBox="0 0 400 400">
+          <defs>
+            <linearGradient id="networkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{stopColor: '#00bfff', stopOpacity: 0.3}} />
+              <stop offset="100%" style={{stopColor: '#8b5cf6', stopOpacity: 0.1}} />
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="2" fill="#00bfff" className="animate-ping" />
+          <circle cx="350" cy="80" r="1.5" fill="#8b5cf6" className="animate-ping delay-500" />
+          <circle cx="320" cy="300" r="2" fill="#06b6d4" className="animate-ping delay-1000" />
+          <circle cx="80" cy="320" r="1" fill="#00bfff" className="animate-ping delay-1500" />
+          
+          <line x1="50" y1="50" x2="150" y2="120" stroke="url(#networkGrad)" strokeWidth="0.5" className="animate-pulse" />
+          <line x1="350" y1="80" x2="250" y2="160" stroke="url(#networkGrad)" strokeWidth="0.5" className="animate-pulse delay-300" />
+          <line x1="320" y1="300" x2="220" y2="240" stroke="url(#networkGrad)" strokeWidth="0.5" className="animate-pulse delay-600" />
+        </svg>
       </div>
 
-      {/* Main Robot Container with hover interactions */}
-      <div className="relative transform group-hover:scale-110 transition-all duration-700 cursor-pointer">
+      {/* Main Premium Robot Container */}
+      <div className="relative transform group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-700 preserve-3d">
         
-        {/* Robot Head with AI Processing Indicator */}
-        <div className="relative mb-3">
-          <div className="w-20 h-20 bg-gradient-to-br from-blue-400 via-cyan-400 to-violet-400 rounded-2xl shadow-2xl shadow-blue-500/60 relative overflow-hidden animate-pulse">
-            {/* AI Processing Bar */}
-            <div className="absolute top-1 left-1 right-1 h-1 bg-gray-700 rounded-full overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-r from-green-400 to-cyan-400 rounded-full animate-pulse"></div>
-              <div className="absolute top-0 left-0 w-1/3 h-full bg-white/30 rounded-full animate-pulse delay-500"></div>
+        {/* Premium Robot Head with Metallic Finish */}
+        <div className="relative mb-4 transform group-hover:rotateX-5 transition-transform duration-500">
+          <div className="w-24 h-24 bg-gradient-to-br from-slate-200 via-blue-100 to-slate-300 rounded-2xl shadow-2xl shadow-blue-500/40 relative overflow-hidden border border-white/20" 
+               style={{
+                 background: 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 25%, #94a3b8 50%, #64748b 75%, #475569 100%)',
+                 boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 0 20px rgba(59,130,246,0.5)',
+               }}>
+            
+            {/* Metallic Reflection */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent animate-pulse"></div>
+            <div className="absolute top-0 left-4 w-8 h-16 bg-gradient-to-b from-white/20 to-transparent blur-sm animate-pulse delay-500"></div>
+            
+            {/* AI Processing HUD */}
+            <div className="absolute top-1 left-1 right-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 rounded-full animate-pulse shadow-lg shadow-cyan-400/50"></div>
             </div>
             
-            {/* Dynamic Eyes with AI glow */}
-            <div className="flex justify-between items-center pt-4 px-4">
-              <div className="relative group">
-                <div className="w-4 h-4 bg-white rounded-full shadow-lg shadow-cyan-400/50 group-hover:bg-cyan-100 transition-colors"></div>
-                <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping m-1 group-hover:animate-pulse"></div>
-                <div className="absolute inset-0 w-1 h-1 bg-white rounded-full m-1.5 animate-pulse delay-200"></div>
+            {/* Premium Eyes with Depth */}
+            <div className="flex justify-between items-center pt-5 px-5">
+              <div className="relative">
+                <div className="w-5 h-5 bg-gradient-radial from-white via-cyan-100 to-cyan-300 rounded-full shadow-inner border border-cyan-200"
+                     style={{boxShadow: 'inset 0 -2px 4px rgba(0,0,0,0.2), 0 0 8px rgba(6,182,212,0.6)'}}>
+                  <div className="absolute inset-1 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full animate-ping"></div>
+                  <div className="absolute inset-2 bg-white rounded-full shadow-lg animate-pulse"></div>
+                </div>
               </div>
-              <div className="relative group">
-                <div className="w-4 h-4 bg-white rounded-full shadow-lg shadow-cyan-400/50 group-hover:bg-cyan-100 transition-colors"></div>
-                <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping m-1 delay-150 group-hover:animate-pulse"></div>
-                <div className="absolute inset-0 w-1 h-1 bg-white rounded-full m-1.5 animate-pulse delay-400"></div>
+              <div className="relative">
+                <div className="w-5 h-5 bg-gradient-radial from-white via-cyan-100 to-cyan-300 rounded-full shadow-inner border border-cyan-200"
+                     style={{boxShadow: 'inset 0 -2px 4px rgba(0,0,0,0.2), 0 0 8px rgba(6,182,212,0.6)'}}>
+                  <div className="absolute inset-1 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full animate-ping delay-200"></div>
+                  <div className="absolute inset-2 bg-white rounded-full shadow-lg animate-pulse delay-200"></div>
+                </div>
               </div>
             </div>
             
-            {/* AI Voice Indicator */}
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
+            {/* AI Voice Spectrum */}
+            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2">
               <div className="flex gap-0.5 items-end">
-                <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
-                <div className="w-1 h-2 bg-cyan-400 rounded-full animate-pulse delay-100"></div>
-                <div className="w-1 h-3 bg-cyan-400 rounded-full animate-pulse delay-200"></div>
-                <div className="w-1 h-2 bg-cyan-400 rounded-full animate-pulse delay-300"></div>
-                <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-400"></div>
+                {[1,2,3,4,5,4,3,2,1].map((height, i) => (
+                  <div key={i} 
+                       className="bg-gradient-to-t from-cyan-500 to-blue-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse"
+                       style={{
+                         width: '2px',
+                         height: `${height * 2}px`,
+                         animationDelay: `${i * 100}ms`
+                       }}>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
           
-          {/* AI Signal Antenna */}
-          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-gradient-to-t from-cyan-400 to-blue-300 rounded-full animate-pulse">
-            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyan-300 rounded-full animate-ping"></div>
-            {/* Signal waves */}
-            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 border border-cyan-400/30 rounded-full animate-ping delay-500"></div>
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 border border-cyan-400/20 rounded-full animate-ping delay-1000"></div>
+          {/* Premium Antenna with Signal */}
+          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <div className="w-1 h-6 bg-gradient-to-t from-slate-400 to-cyan-300 rounded-full shadow-lg animate-pulse">
+              <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-radial from-cyan-300 to-blue-400 rounded-full animate-ping shadow-lg shadow-cyan-400/50"></div>
+            </div>
+            {/* Signal Waves */}
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <div className="w-6 h-6 border border-cyan-400/40 rounded-full animate-ping"></div>
+              <div className="absolute inset-1 border border-cyan-400/30 rounded-full animate-ping delay-500"></div>
+              <div className="absolute inset-2 border border-cyan-400/20 rounded-full animate-ping delay-1000"></div>
+            </div>
           </div>
         </div>
 
-        {/* Enhanced Robot Body with AI Core */}
-        <div className="w-24 h-32 bg-gradient-to-br from-violet-400 via-blue-500 to-cyan-500 rounded-2xl shadow-2xl shadow-violet-500/60 relative overflow-hidden animate-bounce group-hover:animate-none">
+        {/* Premium Body with AI Core */}
+        <div className="w-28 h-36 rounded-2xl shadow-2xl shadow-violet-500/50 relative overflow-hidden border border-white/10 group-hover:shadow-violet-500/70 transition-shadow duration-500"
+             style={{
+               background: 'linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #94a3b8 100%)',
+               boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 0 30px rgba(139,92,246,0.4)',
+             }}>
+          
+          {/* Metallic Body Reflection */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
+          <div className="absolute top-0 right-6 w-8 h-20 bg-gradient-to-b from-white/15 to-transparent blur-sm"></div>
           
           {/* AI Core Reactor */}
-          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-12 h-8 bg-gradient-to-r from-cyan-300 via-blue-200 to-violet-300 rounded-lg shadow-inner relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-pulse"></div>
-            {/* Core energy patterns */}
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-10 rounded-xl shadow-inner relative overflow-hidden border border-cyan-300/30"
+               style={{
+                 background: 'linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%)',
+                 boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 0 16px rgba(59,130,246,0.6)',
+               }}>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
+            
+            {/* Core Energy Rings */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-6 h-6 border-2 border-blue-600 rounded-full animate-spin"></div>
-              <div className="absolute w-4 h-4 border border-cyan-400 rounded-full animate-spin-reverse-slow"></div>
-              <div className="absolute w-2 h-2 bg-white rounded-full animate-ping"></div>
+              <div className="w-8 h-8 border-2 border-cyan-300 rounded-full animate-spin opacity-80"></div>
+              <div className="absolute w-6 h-6 border border-blue-200 rounded-full animate-spin-reverse opacity-60" style={{animationDuration: '3s'}}></div>
+              <div className="absolute w-3 h-3 bg-white rounded-full animate-ping shadow-lg shadow-white/50"></div>
             </div>
           </div>
 
-          {/* Status Indicators */}
-          <div className="absolute top-14 left-1/2 transform -translate-x-1/2 flex gap-1">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping delay-300"></div>
-            <div className="w-2 h-2 bg-violet-400 rounded-full animate-ping delay-600"></div>
+          {/* Status Panel */}
+          <div className="absolute top-16 left-1/2 transform -translate-x-1/2 flex gap-1">
+            <div className="w-3 h-3 bg-green-400 rounded-full animate-ping shadow-lg shadow-green-400/50"></div>
+            <div className="w-3 h-3 bg-blue-400 rounded-full animate-ping delay-300 shadow-lg shadow-blue-400/50"></div>
+            <div className="w-3 h-3 bg-violet-400 rounded-full animate-ping delay-600 shadow-lg shadow-violet-400/50"></div>
           </div>
 
-          {/* Interactive Arms with AI sensors */}
-          <div className="absolute -left-8 top-6 transform origin-top rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500">
-            <div className="w-5 h-16 bg-gradient-to-b from-blue-400 via-violet-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/40 relative">
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-gray-300 rounded-full"></div>
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full animate-pulse delay-700">
-                <div className="absolute inset-1 border border-white/50 rounded-full"></div>
+          {/* Premium Arms with Joints */}
+          <div className="absolute -left-10 top-8 transform origin-top rotate-15 group-hover:rotate-5 group-hover:scale-110 transition-all duration-700">
+            <div className="w-6 h-20 rounded-full shadow-lg shadow-blue-500/30 relative border border-white/10"
+                 style={{
+                   background: 'linear-gradient(180deg, #475569 0%, #64748b 50%, #94a3b8 100%)',
+                   boxShadow: 'inset 1px 0 0 rgba(255,255,255,0.1), 0 0 12px rgba(59,130,246,0.3)',
+                 }}>
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-8 h-4 bg-slate-300 rounded-full border border-slate-400 shadow-inner"></div>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full border border-cyan-300/50 shadow-lg shadow-cyan-400/50"
+                   style={{
+                     background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)',
+                     boxShadow: '0 0 12px rgba(6,182,212,0.6), inset 0 1px 0 rgba(255,255,255,0.2)',
+                   }}>
+                <div className="absolute inset-1 border border-white/30 rounded-full"></div>
               </div>
             </div>
           </div>
           
-          <div className="absolute -right-8 top-6 transform origin-top -rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500">
-            <div className="w-5 h-16 bg-gradient-to-b from-blue-400 via-violet-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/40 relative">
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-gray-300 rounded-full"></div>
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full animate-pulse delay-900">
-                <div className="absolute inset-1 border border-white/50 rounded-full"></div>
+          <div className="absolute -right-10 top-8 transform origin-top -rotate-15 group-hover:-rotate-5 group-hover:scale-110 transition-all duration-700">
+            <div className="w-6 h-20 rounded-full shadow-lg shadow-blue-500/30 relative border border-white/10"
+                 style={{
+                   background: 'linear-gradient(180deg, #475569 0%, #64748b 50%, #94a3b8 100%)',
+                   boxShadow: 'inset -1px 0 0 rgba(255,255,255,0.1), 0 0 12px rgba(59,130,246,0.3)',
+                 }}>
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-8 h-4 bg-slate-300 rounded-full border border-slate-400 shadow-inner"></div>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full border border-cyan-300/50 shadow-lg shadow-cyan-400/50"
+                   style={{
+                     background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)',
+                     boxShadow: '0 0 12px rgba(6,182,212,0.6), inset 0 1px 0 rgba(255,255,255,0.2)',
+                   }}>
+                <div className="absolute inset-1 border border-white/30 rounded-full"></div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Advanced Legs with hover propulsion */}
-        <div className="flex justify-center gap-3 mt-2 group-hover:mt-1 transition-all duration-300">
-          <div className="relative">
-            <div className="w-4 h-20 bg-gradient-to-b from-violet-400 via-blue-500 to-cyan-500 rounded-full shadow-lg shadow-violet-500/40 animate-pulse delay-1100">
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-5 h-2 bg-gray-300 rounded-full"></div>
+        {/* Premium Legs with Hover Effect */}
+        <div className="flex justify-center gap-4 mt-3 group-hover:mt-2 transition-all duration-500">
+          {[0, 1].map((index) => (
+            <div key={index} className="relative">
+              <div className="w-5 h-24 rounded-full shadow-lg shadow-violet-500/30 relative border border-white/10 group-hover:shadow-violet-500/50 transition-shadow duration-500"
+                   style={{
+                     background: 'linear-gradient(180deg, #8b5cf6 0%, #6366f1 25%, #3b82f6 75%, #06b6d4 100%)',
+                     boxShadow: 'inset 1px 0 0 rgba(255,255,255,0.1), 0 0 12px rgba(139,92,246,0.4)',
+                   }}>
+                <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-slate-300 rounded-full border border-slate-400 shadow-inner"></div>
+              </div>
+              <div className="absolute -bottom-2 -left-1 w-7 h-4 rounded-full border border-cyan-300/30 shadow-lg shadow-cyan-400/40"
+                   style={{
+                     background: 'linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%)',
+                     boxShadow: '0 0 8px rgba(6,182,212,0.5), inset 0 1px 0 rgba(255,255,255,0.2)',
+                   }}></div>
+              {/* Hover Propulsion */}
+              <div className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-6 h-2 bg-cyan-400/50 rounded-full blur-sm transition-opacity duration-500 ${index === 0 ? 'group-hover:animate-pulse' : 'group-hover:animate-pulse delay-150'}`}></div>
             </div>
-            <div className="absolute -bottom-1 -left-1 w-6 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg shadow-blue-500/40"></div>
-            {/* Hover propulsion effect */}
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-1 bg-cyan-400/50 rounded-full blur-sm group-hover:animate-pulse"></div>
-          </div>
-          <div className="relative">
-            <div className="w-4 h-20 bg-gradient-to-b from-violet-400 via-blue-500 to-cyan-500 rounded-full shadow-lg shadow-violet-500/40 animate-pulse delay-1300">
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-5 h-2 bg-gray-300 rounded-full"></div>
-            </div>
-            <div className="absolute -bottom-1 -left-1 w-6 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg shadow-blue-500/40"></div>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-1 bg-cyan-400/50 rounded-full blur-sm group-hover:animate-pulse"></div>
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Floating AI Assistant Text */}
-      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        <div className="bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full border border-cyan-400/30">
-          <span className="text-xs text-cyan-300">AI Assistant Ready</span>
+      {/* Premium Floating Interface */}
+      <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:-translate-y-2">
+        <div className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 backdrop-blur-md px-4 py-2 rounded-full border border-cyan-400/30 shadow-2xl shadow-cyan-400/20">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+            <span className="text-sm text-cyan-300 font-medium">AI Assistant Online</span>
+          </div>
         </div>
       </div>
     </div>
     
-    {/* Enhanced Multi-dimensional Glow Effects */}
-    <div className="absolute inset-0 bg-gradient-to-t from-blue-500/40 via-violet-500/25 to-cyan-500/30 rounded-full blur-3xl animate-pulse -z-10"></div>
-    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-transparent to-violet-500/30 rounded-full blur-2xl animate-pulse delay-1000 -z-10"></div>
-    <div className="absolute -inset-12 bg-gradient-to-r from-blue-500/15 via-violet-500/15 to-cyan-500/15 rounded-full blur-3xl animate-pulse delay-2000 -z-10"></div>
+    {/* Premium Multi-Layer Glow System */}
+    <div className="absolute inset-0 bg-gradient-radial from-blue-500/30 via-violet-500/20 to-transparent rounded-full blur-3xl animate-pulse -z-10"></div>
+    <div className="absolute inset-2 bg-gradient-radial from-cyan-500/25 via-transparent to-violet-500/25 rounded-full blur-2xl animate-pulse delay-1000 -z-10"></div>
+    <div className="absolute -inset-8 bg-gradient-radial from-blue-500/15 via-violet-500/10 to-cyan-500/15 rounded-full blur-3xl animate-pulse delay-2000 -z-10"></div>
     
-    {/* Dynamic Orbital Systems */}
-    <div className="absolute inset-0 border border-cyan-400/20 rounded-full animate-spin-slow -z-10"></div>
-    <div className="absolute inset-4 border border-blue-400/15 rounded-full animate-spin-reverse-slow -z-10"></div>
-    <div className="absolute inset-8 border border-violet-400/10 rounded-full animate-spin-slow -z-10" style={{animationDuration: '15s'}}></div>
+    {/* Premium Orbital Rings */}
+    <div className="absolute inset-0 border border-cyan-400/20 rounded-full animate-spin-slow -z-10 shadow-2xl shadow-cyan-400/10"></div>
+    <div className="absolute inset-6 border border-blue-400/15 rounded-full animate-spin-reverse-slow -z-10"></div>
+    <div className="absolute inset-12 border border-violet-400/10 rounded-full animate-spin-slow -z-10" style={{animationDuration: '20s'}}></div>
   </div>
 </div>
 
