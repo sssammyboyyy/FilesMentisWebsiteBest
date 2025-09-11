@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronRight, Zap, Target, Rocket, Shield, Brain, Users, Code, TrendingUp, MessageCircle, Star, ArrowRight, CheckCircle, Clock, DollarSign, TrendingDown } from 'lucide-react';
 import Modal from './components/Modal';
 import CTAButton from './components/CTAButton';
+import SplineScene from './components/SplineScene';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,126 +58,17 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    {/* Enhanced Jaw-dropping CSS Animated Robot */}
-<div className="mb-8 flex justify-center">
-  <div className="relative">
-    <div className="w-80 h-80 flex flex-col items-center justify-center relative">
-      {/* Floating particles around robot */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-4 left-8 w-2 h-2 bg-cyan-400 rounded-full animate-ping delay-100"></div>
-        <div className="absolute top-12 right-12 w-1 h-1 bg-blue-400 rounded-full animate-ping delay-500"></div>
-        <div className="absolute bottom-16 left-4 w-1.5 h-1.5 bg-violet-400 rounded-full animate-ping delay-1000"></div>
-        <div className="absolute bottom-8 right-6 w-1 h-1 bg-cyan-300 rounded-full animate-ping delay-1500"></div>
-      </div>
-
-      {/* Main Robot Container */}
-      <div className="relative transform hover:scale-105 transition-all duration-700">
-        
-        {/* Robot Head with Advanced Effects */}
-        <div className="relative mb-3">
-          <div className="w-20 h-20 bg-gradient-to-br from-blue-400 via-cyan-400 to-violet-400 rounded-2xl shadow-2xl shadow-blue-500/60 relative overflow-hidden animate-pulse">
-            {/* Head glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/20 animate-pulse delay-300"></div>
-            
-            {/* Advanced Eyes with tracking effect */}
-            <div className="flex justify-between items-center pt-4 px-4">
-              <div className="relative">
-                <div className="w-4 h-4 bg-white rounded-full shadow-lg shadow-cyan-400/50"></div>
-                <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping m-1"></div>
-              </div>
-              <div className="relative">
-                <div className="w-4 h-4 bg-white rounded-full shadow-lg shadow-cyan-400/50"></div>
-                <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping m-1 delay-150"></div>
-              </div>
-            </div>
-            
-            {/* Mouth/Speaker grille */}
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
-              <div className="flex gap-0.5">
-                <div className="w-1 h-2 bg-gray-700 rounded-full animate-pulse"></div>
-                <div className="w-1 h-3 bg-gray-700 rounded-full animate-pulse delay-100"></div>
-                <div className="w-1 h-2 bg-gray-700 rounded-full animate-pulse delay-200"></div>
-              </div>
+          {/* Robot Image */}
+          <div className="mb-8 flex justify-center">
+            <div className="relative">
+              <img 
+                src="/standingrobotpic.png" 
+                alt="AI Robot" 
+                className="w-64 h-64 object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 to-transparent rounded-full blur-xl"></div>
             </div>
           </div>
-          
-          {/* Head antenna */}
-          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-gradient-to-t from-cyan-400 to-blue-300 rounded-full animate-pulse">
-            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyan-300 rounded-full animate-ping"></div>
-          </div>
-        </div>
-
-        {/* Enhanced Robot Body */}
-        <div className="w-24 h-32 bg-gradient-to-br from-violet-400 via-blue-500 to-cyan-500 rounded-2xl shadow-2xl shadow-violet-500/60 relative overflow-hidden animate-bounce">
-          {/* Body glow and texture */}
-          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/15 animate-pulse delay-500"></div>
-          
-          {/* Advanced Chest Panel */}
-          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-12 h-8 bg-gradient-to-r from-cyan-300 via-blue-200 to-violet-300 rounded-lg shadow-inner relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
-            {/* Screen lines */}
-            <div className="absolute inset-0 flex flex-col justify-center gap-0.5 px-1">
-              <div className="h-0.5 bg-blue-600 rounded animate-pulse delay-300"></div>
-              <div className="h-0.5 bg-blue-600 rounded animate-pulse delay-600"></div>
-              <div className="h-0.5 bg-blue-600 rounded animate-pulse delay-900"></div>
-            </div>
-          </div>
-
-          {/* Power indicator */}
-          <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-green-400 rounded-full animate-ping shadow-lg shadow-green-400/50"></div>
-
-          {/* Enhanced Arms with joints */}
-          <div className="absolute -left-8 top-6 transform origin-top rotate-12 hover:rotate-0 transition-transform duration-500">
-            <div className="w-5 h-16 bg-gradient-to-b from-blue-400 via-violet-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/40 relative">
-              {/* Arm joint */}
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-gray-300 rounded-full"></div>
-              {/* Hand */}
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full animate-pulse delay-700"></div>
-            </div>
-          </div>
-          
-          <div className="absolute -right-8 top-6 transform origin-top -rotate-12 hover:rotate-0 transition-transform duration-500">
-            <div className="w-5 h-16 bg-gradient-to-b from-blue-400 via-violet-400 to-blue-500 rounded-full shadow-lg shadow-blue-500/40 relative">
-              {/* Arm joint */}
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-gray-300 rounded-full"></div>
-              {/* Hand */}
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full animate-pulse delay-900"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Enhanced Legs with feet */}
-        <div className="flex justify-center gap-3 mt-2">
-          <div className="relative">
-            <div className="w-4 h-20 bg-gradient-to-b from-violet-400 via-blue-500 to-cyan-500 rounded-full shadow-lg shadow-violet-500/40 animate-pulse delay-1100">
-              {/* Knee joint */}
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-5 h-2 bg-gray-300 rounded-full"></div>
-            </div>
-            {/* Foot */}
-            <div className="absolute -bottom-1 -left-1 w-6 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg shadow-blue-500/40"></div>
-          </div>
-          <div className="relative">
-            <div className="w-4 h-20 bg-gradient-to-b from-violet-400 via-blue-500 to-cyan-500 rounded-full shadow-lg shadow-violet-500/40 animate-pulse delay-1300">
-              {/* Knee joint */}
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-5 h-2 bg-gray-300 rounded-full"></div>
-            </div>
-            {/* Foot */}
-            <div className="absolute -bottom-1 -left-1 w-6 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg shadow-blue-500/40"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    {/* Enhanced Multi-layer Glow Effects */}
-    <div className="absolute inset-0 bg-gradient-to-t from-blue-500/40 via-violet-500/25 to-cyan-500/30 rounded-full blur-3xl animate-pulse -z-10"></div>
-    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-transparent to-violet-500/30 rounded-full blur-2xl animate-pulse delay-1000 -z-10"></div>
-    <div className="absolute -inset-12 bg-gradient-to-r from-blue-500/15 via-violet-500/15 to-cyan-500/15 rounded-full blur-3xl animate-pulse delay-2000 -z-10"></div>
-    
-    {/* Rotating orbital rings */}
-    <div className="absolute inset-0 border border-cyan-400/20 rounded-full animate-spin-slow -z-10"></div>
-    <div className="absolute inset-4 border border-blue-400/20 rounded-full animate-spin-reverse-slow -z-10"></div>
-  </div>
-</div>
 
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
