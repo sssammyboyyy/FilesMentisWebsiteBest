@@ -62,7 +62,7 @@ function App() {
           <div className="mb-8 flex justify-center">
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem]">
               <SplineScene 
-                sceneUrl="https://prod.spline.design/gAnlaJZv9ee1ZnnP/scene.splinecode"
+                sceneUrl="https://my.spline.design/nexbotrobotcharacterconcept-pVRt1AWTAsUh5WeJKottQpSv/"
                 className="w-full h-full rounded-2xl transition-all duration-700 hover:scale-105"
                 fallbackContent={
                   <div className="flex items-center justify-center h-full">
