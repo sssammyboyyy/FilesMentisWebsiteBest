@@ -58,7 +58,6 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-<<<<<<< HEAD
           {/* Premium 3D Interactive Robot */}
           <div className="mb-8 flex justify-center">
             <div className="relative w-full max-w-2xl">
@@ -68,6 +67,7 @@ function App() {
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/12 via-transparent to-violet-500/8 rounded-2xl blur-2xl -z-10 animate-pulse delay-1000"></div>
               <div className="absolute -inset-8 bg-gradient-to-r from-blue-500/5 via-violet-500/5 to-cyan-500/5 rounded-3xl blur-2xl -z-20"></div>
             </div>
+          </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
