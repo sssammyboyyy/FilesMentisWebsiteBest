@@ -1,7 +1,113 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, ContactShadows, Text, Float } from '@react-three/drei';
 import * as THREE from 'three';
+import { Brain, Cpu, Zap } from 'lucide-react';
+
+// Error Boundary for 3D components
+class ThreeErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode; fallback: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: any): { hasError: boolean } {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    console.log('3D Component Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+
+    return this.props.children;
+  }
+}
+
+// Fallback 2D Robot Animation
+const FallbackRobot = () => {
+  const [activeIcon, setActiveIcon] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIcon(prev => (prev + 1) % 3);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const icons = [Brain, Cpu, Zap];
+  const ActiveIcon = icons[activeIcon];
+
+  return (
+    <div className="relative w-full h-96 flex items-center justify-center">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-violet-500/10 to-cyan-500/10 rounded-2xl blur-2xl animate-pulse"></div>
+      
+      {/* Main robot container */}
+      <div className="relative">
+        {/* Robot body */}
+        <div className="w-32 h-40 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl border-2 border-blue-500/30 relative overflow-hidden group hover:scale-105 transition-transform duration-500">
+          {/* Animated background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 group-hover:from-blue-500/10 group-hover:to-violet-500/10 transition-all duration-300"></div>
+          
+          {/* Head */}
+          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl border-2 border-cyan-500/40">
+            {/* Eyes */}
+            <div className="absolute top-3 left-3 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-3 right-3 w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-200"></div>
+            {/* Antenna */}
+            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-blue-400 rounded-full"></div>
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+          </div>
+          
+          {/* Chest panel with rotating icon */}
+          <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-blue-500/50 flex items-center justify-center">
+            <ActiveIcon className="w-8 h-8 text-blue-400 transition-all duration-500" />
+          </div>
+          
+          {/* Arms */}
+          <div className="absolute top-4 -left-4 w-8 h-16 bg-gradient-to-b from-gray-600 to-gray-700 rounded-full animate-pulse delay-300"></div>
+          <div className="absolute top-4 -right-4 w-8 h-16 bg-gradient-to-b from-gray-600 to-gray-700 rounded-full animate-pulse delay-500"></div>
+        </div>
+        
+        {/* Floating particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          {Array.from({ length: 8 }).map((_, i) => {
+            const delay = i * 200;
+            const x = Math.cos((i / 8) * Math.PI * 2) * 60;
+            const y = Math.sin((i / 8) * Math.PI * 2) * 60;
+            
+            return (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-blue-400 rounded-full animate-ping"
+                style={{
+                  left: `calc(50% + ${x}px)`,
+                  top: `calc(50% + ${y}px)`,
+                  animationDelay: `${delay}ms`
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
+      
+      {/* Status text */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-400/30">
+          <span className="text-sm text-cyan-300">AI Assistant Active</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Premium Robot Mesh Component
 function PremiumRobotMesh({ hover, clicked }: { hover: boolean; clicked: boolean }) {
@@ -237,6 +343,16 @@ function Scene({ hover, clicked }: { hover: boolean; clicked: boolean }) {
   );
 }
 
+// Loading component
+const LoadingRobot = () => (
+  <div className="relative w-full h-96 flex items-center justify-center">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-gray-400">Loading AI Assistant...</p>
+    </div>
+  </div>
+);
+
 // Main Premium 3D Robot Component
 export default function Premium3DRobot() {
   const [hover, setHover] = useState(false);
@@ -248,24 +364,32 @@ export default function Premium3DRobot() {
   };
 
   return (
-    <div className="relative w-full h-96 cursor-pointer group">
-      <Canvas
-        camera={{ position: [0, 0, 12], fov: 45 }}
-        shadows
-        onPointerEnter={() => setHover(true)}
-        onPointerLeave={() => setHover(false)}
-        onClick={handleClick}
-      >
-        <Scene hover={hover} clicked={clicked} />
-      </Canvas>
-      
-      {/* Status Overlay */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-400/30 flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-          <span className="text-sm text-cyan-300">Drag to rotate • Click for animation</span>
+    <ThreeErrorBoundary fallback={<FallbackRobot />}>
+      <div className="relative w-full h-96 cursor-pointer group">
+        <Suspense fallback={<LoadingRobot />}>
+          <Canvas
+            camera={{ position: [0, 0, 12], fov: 45 }}
+            shadows
+            onPointerEnter={() => setHover(true)}
+            onPointerLeave={() => setHover(false)}
+            onClick={handleClick}
+            gl={{ preserveDrawingBuffer: true }}
+            onCreated={({ gl }) => {
+              gl.setClearColor('#000000', 0);
+            }}
+          >
+            <Scene hover={hover} clicked={clicked} />
+          </Canvas>
+        </Suspense>
+        
+        {/* Status Overlay */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-400/30 flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+            <span className="text-sm text-cyan-300">Drag to rotate • Click for animation</span>
+          </div>
         </div>
       </div>
-    </div>
+    </ThreeErrorBoundary>
   );
 }
