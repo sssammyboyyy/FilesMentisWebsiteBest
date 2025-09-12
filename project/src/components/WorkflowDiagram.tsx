@@ -115,12 +115,17 @@ const ProblemSolutionDiagram = () => {
           </div>
         </div>
 
-        {/* Arrow */}
-        <div className="flex justify-center">
+        {/* Arrow - Hidden on mobile, elegant on desktop */}
+        <div className="hidden lg:flex justify-center">
           <div className="relative">
-            <ArrowRight className="w-12 h-12 text-orange-400" />
-            <div className="absolute -top-2 -right-2 w-4 h-4 bg-orange-400 rounded-full animate-ping"></div>
+            <ArrowRight className="w-8 h-8 text-orange-400/70" />
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
           </div>
+        </div>
+        
+        {/* Mobile separator */}
+        <div className="lg:hidden flex justify-center py-4">
+          <div className="w-px h-8 bg-gradient-to-b from-orange-400/50 to-green-400/50"></div>
         </div>
 
         {/* Solutions Side */}
