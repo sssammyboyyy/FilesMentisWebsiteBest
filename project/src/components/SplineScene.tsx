@@ -12,6 +12,7 @@ const SplineScene: React.FC<SplineSceneProps> = ({
   className = "", 
   fallbackContent 
 }) => {
+  console.log('SplineScene rendered with URL:', sceneUrl);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -28,10 +29,12 @@ const SplineScene: React.FC<SplineSceneProps> = ({
   }, []);
 
   const handleLoad = () => {
+    console.log('Spline scene loaded successfully!');
     setIsLoading(false);
   };
 
-  const handleError = () => {
+  const handleError = (error: any) => {
+    console.error('Spline scene failed to load:', error);
     setIsLoading(false);
     setHasError(true);
   };
@@ -67,37 +70,28 @@ const SplineScene: React.FC<SplineSceneProps> = ({
     return <div className={className}><ErrorFallback /></div>;
   }
 
-  // Show fallback content on mobile for better performance
-  if (isMobile && fallbackContent) {
-    return (
-      <div className={`relative ${className} flex items-center justify-center`}>
-        {fallbackContent}
-        <div className="absolute bottom-2 right-2 text-xs text-gray-500 bg-black/20 px-2 py-1 rounded">
-          Interactive on desktop
-        </div>
-      </div>
-    );
-  }
+  // Show fallback content on mobile for better performance - TEMPORARILY DISABLED
+  // if (isMobile && fallbackContent) {
+  //   return (
+  //     <div className={`relative ${className} flex items-center justify-center`}>
+  //       {fallbackContent}
+  //       <div className="absolute bottom-2 right-2 text-xs text-gray-500 bg-black/20 px-2 py-1 rounded">
+  //         Interactive on desktop
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
+  // TEMPORARY TEST - bypassing Spline for debugging
   return (
     <div className={`relative ${className}`}>
-      {isLoading && (
-        <div className="absolute inset-0 z-10 bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-sm rounded-2xl">
-          <LoadingSpinner />
+      <div className="flex flex-col items-center justify-center h-full bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-2xl border-2 border-blue-500/30">
+        <div className="text-2xl font-bold text-blue-400 mb-2">🤖 NEXBOT</div>
+        <div className="text-sm text-gray-400 mb-2">3D Scene URL: {sceneUrl}</div>
+        <div className="text-xs text-gray-500 text-center px-4">
+          CSP blocking Spline - Working on fix...
         </div>
-      )}
-      <Suspense fallback={<LoadingSpinner />}>
-        <Spline
-          scene={sceneUrl}
-          onLoad={handleLoad}
-          onError={handleError}
-          style={{ 
-            width: '100%', 
-            height: '100%',
-            borderRadius: '1rem'
-          }}
-        />
-      </Suspense>
+      </div>
     </div>
   );
 };

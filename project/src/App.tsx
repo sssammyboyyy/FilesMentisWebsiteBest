@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronRight, Zap, Target, Rocket, Shield, Brain, Users, Code, TrendingUp, MessageCircle, Star, ArrowRight, CheckCircle, Clock, DollarSign, TrendingDown } from 'lucide-react';
 import Modal from './components/Modal';
 import CTAButton from './components/CTAButton';
-import SplineScene from './components/SplineScene';
+import Premium3DRobot from './components/Premium3DRobot';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,27 +58,14 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Interactive Spline Animation */}
+          {/* Premium 3D Interactive Robot */}
           <div className="mb-8 flex justify-center">
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem]">
-              <SplineScene 
-                sceneUrl="https://my.spline.design/nexbotrobotcharacterconcept-pVRt1AWTAsUh5WeJKottQpSv/"
-                className="w-full h-full rounded-2xl transition-all duration-700 hover:scale-105"
-                fallbackContent={
-                  <div className="flex items-center justify-center h-full">
-                    <img 
-                      src="/standingrobotpic.png" 
-                      alt="AI Robot" 
-                      className="w-64 h-64 object-contain opacity-90 hover:opacity-100 transition-all duration-300"
-                      loading="lazy"
-                    />
-                  </div>
-                }
-              />
+            <div className="relative w-full max-w-2xl">
+              <Premium3DRobot />
               {/* Enhanced ambient glow effects */}
               <div className="absolute inset-0 bg-gradient-to-t from-blue-500/15 via-violet-500/8 to-transparent rounded-2xl blur-3xl -z-10 animate-pulse"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/12 via-transparent to-violet-500/8 rounded-2xl blur-2xl -z-10 animate-pulse delay-1000"></div>
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/5 via-violet-500/5 to-cyan-500/5 rounded-3xl blur-2xl -z-20"></div>
+              <div className="absolute -inset-8 bg-gradient-to-r from-blue-500/5 via-violet-500/5 to-cyan-500/5 rounded-3xl blur-2xl -z-20"></div>
             </div>
           </div>
 
