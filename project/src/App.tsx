@@ -7,6 +7,8 @@ import VisualProof from './components/VisualProof';
 import ROICalculator from './components/ROICalculator';
 import UrgencyElements from './components/UrgencyElements';
 import WorkflowDiagram from './components/WorkflowDiagram';
+import InteractiveHero from './components/InteractiveHero';
+import PremiumFooter from './components/PremiumFooter';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,68 +55,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 via-black to-cyan-900/20"></div>
-        
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Premium 3D Interactive Robot */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative w-full max-w-2xl">
-              <Premium3DRobot />
-              {/* Enhanced ambient glow effects */}
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-500/15 via-violet-500/8 to-transparent rounded-2xl blur-3xl -z-10 animate-pulse"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/12 via-transparent to-violet-500/8 rounded-2xl blur-2xl -z-10 animate-pulse delay-1000"></div>
-              <div className="absolute -inset-8 bg-gradient-to-r from-blue-500/5 via-violet-500/5 to-cyan-500/5 rounded-3xl blur-2xl -z-20"></div>
-            </div>
-          </div>
-
-          {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-              Unlock Freedom of Mind:
-            </span>
-            <br />
-            <span className="text-white">Scale Faster with AI Automation</span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto text-enhanced-loose">
-            Transform your business operations with intelligent automation. 
-            Mentis Liberum delivers explosive growth by eliminating manual work, 
-            boosting revenue, and future-proofing your competitive edge.
-          </p>
-
-          {/* CTA Button */}
-          <CTAButton onClick={openModal} size="lg">
-            Book Your Consultation
-          </CTAButton>
-
-          {/* Trust indicators */}
-          <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-sm text-gray-400">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-green-400" />
-              <span>No Risk Consultation</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-green-400" />
-              <span>24h Response Time</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-green-400" />
-              <span>ROI Guaranteed</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Interactive Hero Section */}
+      <InteractiveHero onOpenModal={openModal} />
 
       {/* Value Proposition Section */}
       <section className="py-20 bg-gradient-to-b from-black to-gray-900">
@@ -488,43 +430,11 @@ function App() {
         onOpenCalculator={openCalculator}
       />
 
-      {/* Footer */}
-      <footer className="py-12 bg-black border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
-                Mentis Liberum
-              </h3>
-              <p className="text-gray-400 mt-2">
-                Freedom of Mind, Powered by AI
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-8 mb-8 text-sm">
-              <a href="#services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                Services
-              </a>
-              <a href="#about" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                About
-              </a>
-              <a href="#contact" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                Contact
-              </a>
-              <a href="#privacy" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                Privacy Policy
-              </a>
-              <a href="#terms" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                Terms of Service
-              </a>
-            </div>
-            
-            <div className="text-gray-500 text-sm">
-              © 2025 Mentis Liberum. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* Premium Footer */}
+      <PremiumFooter 
+        onOpenModal={openModal}
+        onOpenCalculator={openCalculator}
+      />
 
       {/* Modal Components */}
       <Modal

@@ -287,24 +287,24 @@ const WorkflowDiagram: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              {
-                phase: "Week 1-2",
-                title: "Discovery & Strategy",
-                deliverables: ["Process audit report", "Automation roadmap", "ROI projections"],
-                color: "blue"
-              },
-              {
-                phase: "Week 3-6",
-                title: "Development & Testing",
-                deliverables: ["Custom AI solutions", "Integration testing", "Staff training materials"],
-                color: "orange"
-              },
-              {
-                phase: "Week 7+",
-                title: "Launch & Optimization",
-                deliverables: ["Live deployment", "Performance monitoring", "Ongoing optimization"],
-                color: "green"
-              }
+            {
+              phase: "Week 1",
+              title: "Discovery & Strategy",
+              deliverables: ["Process audit report", "Automation roadmap", "ROI projections"],
+              color: "blue"
+            },
+            {
+              phase: "Week 2-3",
+              title: "Development & Testing",
+              deliverables: ["Custom AI solutions", "Integration testing", "Staff training materials"],
+              color: "orange"
+            },
+            {
+              phase: "Week 4+",
+              title: "Launch & Scale",
+              deliverables: ["Live deployment", "Performance monitoring", "Continuous optimization"],
+              color: "green"
+            }
             ].map((timeline, index) => (
               <div key={index} className="text-center">
                 <div className={`w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-white font-bold text-lg ${

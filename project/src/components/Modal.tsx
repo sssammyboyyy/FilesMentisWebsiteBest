@@ -61,6 +61,14 @@ const Modal: React.FC<ModalProps> = ({
               Book your consultation today and discover how AI automation can unlock 
               your freedom of mind and accelerate your growth.
             </p>
+            
+            {/* Limited Time Offer Banner */}
+            <div className="mt-6 inline-flex items-center gap-3 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/40 rounded-full px-6 py-3">
+              <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping"></div>
+              <span className="text-orange-200 font-medium text-sm">
+                🔥 FREE $5,000 AI Readiness Assessment (Limited Time)
+              </span>
+            </div>
           </div>
 
           {/* Form */}
@@ -171,11 +179,11 @@ const Modal: React.FC<ModalProps> = ({
                 className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
               >
                 <option value="">Select budget range</option>
-                <option value="under-25k">Under $25,000</option>
-                <option value="25k-50k">$25,000 - $50,000</option>
-                <option value="50k-100k">$50,000 - $100,000</option>
-                <option value="100k-250k">$100,000 - $250,000</option>
-                <option value="over-250k">Over $250,000</option>
+                <option value="under-15k">Under $15,000</option>
+                <option value="15k-40k">$15,000 - $40,000</option>
+                <option value="40k-90k">$40,000 - $90,000</option>
+                <option value="90k-240k">$90,000 - $240,000</option>
+                <option value="over-240k">Over $240,000</option>
               </select>
             </div>
 

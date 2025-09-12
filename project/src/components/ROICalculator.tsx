@@ -31,12 +31,70 @@ const ROICalculator: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
 
   const [results, setResults] = useState<Results | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
+  
+  // Form data for the custom strategy form
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    services: '',
+    timeline: '',
+    budget: '',
+    currentChallenges: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (field: keyof CalculatorState, value: number) => {
     setCalculatorData(prev => ({
       ...prev,
       [field]: value
     }));
+  };
+  
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+  
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Prepare data for n8n webhook
+    const submissionData = {
+      ...formData,
+      roiResults: results,
+      calculatorInputs: calculatorData,
+      source: 'ROI Calculator',
+      timestamp: new Date().toISOString()
+    };
+    
+    try {
+      // Send to n8n webhook (same as existing modal)
+      const response = await fetch('YOUR_N8N_WEBHOOK_URL', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+      
+      if (response.ok) {
+        // Success - show thank you message or close
+        setStep(6); // Thank you step
+      } else {
+        console.error('Form submission failed');
+        // Handle error
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      // Handle error
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const calculateROI = async () => {
@@ -435,10 +493,13 @@ const ROICalculator: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
                     These results are just the beginning. Let's discuss how to make this vision a reality for your business.
                   </p>
                   <button
-                    onClick={onClose}
+                    onClick={() => {
+                      // Show custom form instead of just closing
+                      setStep(5);
+                    }}
                     className="gradient-accent px-8 py-4 rounded-full font-semibold text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                   >
-                    Book Your Strategy Call
+                    Get My Custom Strategy
                   </button>
                 </div>
 
@@ -453,6 +514,230 @@ const ROICalculator: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
                     Calculate Again
                   </button>
                 </div>
+              </div>
+            )}
+
+            {step === 5 && (
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold mb-4">
+                    <span className="text-white">Get Your Custom</span>{' '}
+                    <span className="gradient-text-accent">AI Strategy</span>
+                  </h3>
+                  <p className="text-gray-300">Based on your ROI results, let's create a personalized automation roadmap for your business.</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Full Name *</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Email Address *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                      placeholder="your@company.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Company Name</label>
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                      placeholder="Your company name"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Priority Service *</label>
+                    <select
+                      name="services"
+                      required
+                      value={formData.services}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                    >
+                      <option value="">Select priority area</option>
+                      <option value="process-automation">Process Automation</option>
+                      <option value="ai-strategy">AI Strategy Consulting</option>
+                      <option value="custom-apps">Custom AI Applications</option>
+                      <option value="growth-strategy">Growth Strategy</option>
+                      <option value="full-transformation">Complete Transformation</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Timeline</label>
+                    <select
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleFormChange}
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                    >
+                      <option value="">Select timeline</option>
+                      <option value="immediate">Start immediately</option>
+                      <option value="1-month">Within 1 month</option>
+                      <option value="3-months">Within 3 months</option>
+                      <option value="exploring">Just exploring</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Investment Budget</label>
+                  <select
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleFormChange}
+                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300"
+                  >
+                    <option value="">Select budget range</option>
+                    <option value="under-15k">Under $15,000</option>
+                    <option value="15k-40k">$15,000 - $40,000</option>
+                    <option value="40k-90k">$40,000 - $90,000</option>
+                    <option value="90k-240k">$90,000 - $240,000</option>
+                    <option value="over-240k">Over $240,000</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Current Challenges</label>
+                  <textarea
+                    name="currentChallenges"
+                    rows={4}
+                    value={formData.currentChallenges}
+                    onChange={handleFormChange}
+                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300 resize-none"
+                    placeholder="Describe your biggest operational challenges and what you'd like to achieve with AI automation..."
+                  />
+                </div>
+
+                {/* ROI Summary */}
+                {results && (
+                  <div className="bg-gradient-to-br from-orange-500/10 to-green-500/10 border border-orange-500/30 rounded-lg p-6">
+                    <h4 className="font-semibold text-white mb-3">Your Calculated ROI Potential</h4>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-300">Annual Savings:</span>
+                        <span className="text-green-300 font-semibold">${Math.round(results.annualSavings).toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-300">ROI:</span>
+                        <span className="text-green-300 font-semibold">{Math.round(results.roi)}%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-300">Hours Freed Weekly:</span>
+                        <span className="text-green-300 font-semibold">{Math.round(results.hoursFreedWeekly)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-300">Payback Time:</span>
+                        <span className="text-green-300 font-semibold">{Math.round(results.paybackMonths)} months</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex gap-4 justify-center pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setStep(4)}
+                    className="px-6 py-3 bg-gray-700 text-white rounded-full font-medium hover:bg-gray-600 transition-colors"
+                  >
+                    Back to Results
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !formData.name || !formData.email || !formData.services}
+                    className="gradient-accent px-8 py-3 rounded-full font-semibold text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Creating Strategy...
+                      </span>
+                    ) : (
+                      'Get My Custom Strategy'
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {step === 6 && (
+              <div className="text-center space-y-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-10 h-10 text-white" />
+                </div>
+                
+                <h3 className="text-3xl font-bold mb-4">
+                  <span className="text-white">Strategy Request</span>{' '}
+                  <span className="gradient-text-accent">Submitted!</span>
+                </h3>
+                
+                <p className="text-gray-300 max-w-2xl mx-auto text-enhanced mb-8">
+                  Thank you! Our AI automation experts will analyze your ROI results and current 
+                  challenges to create a personalized strategy. You'll receive your custom roadmap 
+                  within 24 hours.
+                </p>
+                
+                <div className="bg-gradient-to-br from-blue-500/10 to-violet-500/10 border border-blue-500/30 rounded-lg p-6 max-w-md mx-auto">
+                  <h4 className="font-semibold text-white mb-3">What happens next?</h4>
+                  <ul className="space-y-2 text-sm text-gray-300 text-left">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Our team analyzes your specific situation (2-4 hours)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Custom strategy document created (12-24 hours)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Personal consultation scheduled (if desired)</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <button
+                  onClick={onClose}
+                  className="bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-3 rounded-full font-semibold text-white hover:shadow-lg transition-all duration-300"
+                >
+                  Close
+                </button>
               </div>
             )}
           </div>

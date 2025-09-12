@@ -131,12 +131,19 @@ const UrgencyElements: React.FC<UrgencyElementsProps> = ({ onOpenModal, onOpenCa
           </div>
 
           <div className="text-center">
-            <CTAButton onClick={onOpenModal} variant="accent" size="lg">
-              Claim Your Free Assessment
-            </CTAButton>
-            <p className="text-sm text-gray-400 mt-3">
-              No obligations • Results delivered within 48 hours
-            </p>
+            <div className="inline-block">
+              <CTAButton onClick={onOpenModal} variant="accent" size="lg">
+                Claim Your Free Assessment
+              </CTAButton>
+              <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/40 rounded-lg px-4 py-2 mt-3">
+                <p className="text-sm text-orange-200 font-medium">
+                  🔥 Limited Time: Free $5,000 AI Readiness Assessment
+                </p>
+                <p className="text-xs text-orange-300 mt-1">
+                  Normally $5,000 • Only 3 days remaining • Results in 48 hours
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
