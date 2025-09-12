@@ -10,28 +10,33 @@ interface PremiumFooterProps {
 const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalculator }) => {
   const currentYear = new Date().getFullYear();
 
+  // Function to smoothly scroll to section
+  const scrollToSection = (sectionId: string) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const services = [
-    { name: 'Process Automation', href: '#services' },
-    { name: 'AI Strategy Consulting', href: '#services' },
-    { name: 'Custom AI Applications', href: '#services' },
-    { name: 'Executive Mentorship', href: '#services' },
-    { name: 'Growth Implementation', href: '#services' }
+    { name: 'Process Automation', action: () => scrollToSection('#services') },
+    { name: 'AI Strategy Consulting', action: () => scrollToSection('#services') },
+    { name: 'Custom AI Applications', action: () => scrollToSection('#services') },
+    { name: 'Executive Mentorship', action: () => scrollToSection('#services') },
+    { name: 'Growth Implementation', action: () => scrollToSection('#services') }
   ];
 
   const resources = [
     { name: 'ROI Calculator', action: onOpenCalculator },
-    { name: 'Case Studies', href: '#proof' },
-    { name: 'Implementation Guide', href: '#workflow' },
-    { name: 'Success Stories', href: '#testimonials' },
+    { name: 'Our Process', action: () => scrollToSection('#workflow') },
+    { name: 'Success Stories', action: () => scrollToSection('#testimonials') },
     { name: 'Free Assessment', action: onOpenModal }
   ];
 
   const company = [
-    { name: 'About Mentis Liberum', href: '#about' },
-    { name: 'Our Process', href: '#workflow' },
-    { name: 'Why Choose Us', href: '#value' },
-    { name: 'Privacy Policy', href: '#privacy' },
-    { name: 'Terms of Service', href: '#terms' }
+    { name: 'Why Choose Us', action: () => scrollToSection('#value') },
+    { name: 'Our Methodology', action: () => scrollToSection('#workflow') },
+    { name: 'Client Results', action: () => scrollToSection('#testimonials') }
   ];
 
   return (
@@ -127,13 +132,13 @@ const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalcul
               <ul className="space-y-3">
                 {services.map((service, index) => (
                   <li key={index}>
-                    <a
-                      href={service.href}
+                    <button
+                      onClick={service.action}
                       className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm flex items-center gap-2 group"
                     >
                       <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <span>{service.name}</span>
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -145,23 +150,13 @@ const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalcul
               <ul className="space-y-3">
                 {resources.map((resource, index) => (
                   <li key={index}>
-                    {resource.action ? (
-                      <button
-                        onClick={resource.action}
-                        className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm flex items-center gap-2 group"
-                      >
-                        <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span>{resource.name}</span>
-                      </button>
-                    ) : (
-                      <a
-                        href={resource.href}
-                        className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm flex items-center gap-2 group"
-                      >
-                        <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span>{resource.name}</span>
-                      </a>
-                    )}
+                    <button
+                      onClick={resource.action}
+                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm flex items-center gap-2 group"
+                    >
+                      <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <span>{resource.name}</span>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -173,13 +168,13 @@ const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalcul
               <ul className="space-y-3 mb-6">
                 {company.map((item, index) => (
                   <li key={index}>
-                    <a
-                      href={item.href}
+                    <button
+                      onClick={item.action}
                       className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm flex items-center gap-2 group"
                     >
                       <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <span>{item.name}</span>
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -232,20 +227,9 @@ const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalcul
               © {currentYear} Mentis Liberum. All rights reserved. Transforming businesses through AI automation.
             </div>
             
-            <div className="flex items-center gap-6 text-sm">
-              <a href="#privacy" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                Privacy
-              </a>
-              <a href="#terms" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                Terms
-              </a>
-              <a href="#cookies" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                Cookies
-              </a>
-              <div className="flex items-center gap-2 text-gray-500">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-                <span className="text-xs">All systems operational</span>
-              </div>
+            <div className="flex items-center gap-2 text-gray-500">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+              <span className="text-xs">All systems operational</span>
             </div>
           </div>
         </div>

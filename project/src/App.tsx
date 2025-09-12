@@ -59,7 +59,7 @@ function App() {
       <InteractiveHero onOpenModal={openModal} />
 
       {/* Value Proposition Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section id="value" className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -235,10 +235,12 @@ function App() {
       <VisualProof onOpenCalculator={openCalculator} />
 
       {/* Workflow Diagram Section */}
-      <WorkflowDiagram />
+      <div id="workflow">
+        <WorkflowDiagram />
+      </div>
 
       {/* Services Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section id="services" className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -338,7 +340,7 @@ function App() {
       </section>
 
       {/* Social Proof Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+      <section id="testimonials" className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">

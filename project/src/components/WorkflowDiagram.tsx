@@ -253,9 +253,9 @@ const WorkflowDiagram: React.FC = () => {
 
           {/* Mobile Workflow */}
           <div className="lg:hidden">
-            <div className="space-y-8">
+            <div className="space-y-4">
               {workflowSteps.map((step, index) => (
-                <div key={index} className="flex items-center gap-4">
+                <div key={index}>
                   <WorkflowStep
                     step={index + 1}
                     title={step.title}
@@ -263,13 +263,11 @@ const WorkflowDiagram: React.FC = () => {
                     icon={step.icon}
                     isActive={activeStep === index + 1}
                     isCompleted={completedSteps.includes(index + 1)}
-                    className="flex-1"
+                    className="w-full"
                   />
                   {index < workflowSteps.length - 1 && (
-                    <div className="flex flex-col items-center">
-                      <div className="w-px h-8 bg-gray-600"></div>
-                      <ArrowRight className="w-4 h-4 text-gray-600 rotate-90" />
-                      <div className="w-px h-8 bg-gray-600"></div>
+                    <div className="flex justify-center py-2">
+                      <div className="w-px h-6 bg-gradient-to-b from-gray-600 to-transparent"></div>
                     </div>
                   )}
                 </div>
