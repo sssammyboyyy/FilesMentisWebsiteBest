@@ -1,0 +1,465 @@
+import React, { useState, useEffect } from 'react';
+import { Calculator, TrendingUp, Clock, DollarSign, Users, Zap, ArrowRight, X } from 'lucide-react';
+
+interface CalculatorState {
+  employees: number;
+  avgHourlyRate: number;
+  hoursPerWeek: number;
+  automationPercentage: number;
+  currentMonthlyRevenue: number;
+}
+
+interface Results {
+  monthlySavings: number;
+  annualSavings: number;
+  hoursFreedWeekly: number;
+  hoursFreedMonthly: number;
+  roi: number;
+  paybackMonths: number;
+  projectedGrowth: number;
+}
+
+const ROICalculator: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+  const [step, setStep] = useState(1);
+  const [calculatorData, setCalculatorData] = useState<CalculatorState>({
+    employees: 5,
+    avgHourlyRate: 50,
+    hoursPerWeek: 20,
+    automationPercentage: 70,
+    currentMonthlyRevenue: 50000
+  });
+
+  const [results, setResults] = useState<Results | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  const handleInputChange = (field: keyof CalculatorState, value: number) => {
+    setCalculatorData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const calculateROI = async () => {
+    setIsCalculating(true);
+    
+    // Simulate calculation delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    const { employees, avgHourlyRate, hoursPerWeek, automationPercentage, currentMonthlyRevenue } = calculatorData;
+    
+    // Calculate time savings
+    const totalHoursWeekly = employees * hoursPerWeek;
+    const hoursFreedWeekly = totalHoursWeekly * (automationPercentage / 100);
+    const hoursFreedMonthly = hoursFreedWeekly * 4.33;
+
+    // Calculate cost savings
+    const monthlySavings = hoursFreedMonthly * avgHourlyRate;
+    const annualSavings = monthlySavings * 12;
+
+    // Assume implementation cost based on complexity
+    const implementationCost = Math.min(annualSavings * 0.3, 100000);
+    const paybackMonths = implementationCost / monthlySavings;
+
+    // Calculate ROI (return on investment percentage)
+    const roi = ((annualSavings - implementationCost) / implementationCost) * 100;
+
+    // Projected growth from freed capacity
+    const capacityIncrease = (hoursFreedWeekly / totalHoursWeekly) * 100;
+    const projectedGrowth = Math.min(capacityIncrease * 0.8, 50); // Cap at 50% growth
+
+    setResults({
+      monthlySavings,
+      annualSavings,
+      hoursFreedWeekly,
+      hoursFreedMonthly,
+      roi,
+      paybackMonths,
+      projectedGrowth
+    });
+
+    setIsCalculating(false);
+    setStep(4);
+  };
+
+  if (!isOpen) return null;
+
+  const steps = [
+    { title: "Team Size", icon: <Users className="w-5 h-5" /> },
+    { title: "Time Investment", icon: <Clock className="w-5 h-5" /> },
+    { title: "Business Metrics", icon: <DollarSign className="w-5 h-5" /> },
+    { title: "Your Results", icon: <TrendingUp className="w-5 h-5" /> }
+  ];
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-800/95 to-gray-900/95 rounded-3xl border border-gray-700/50 shadow-2xl animate-slideUp">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-6 right-6 z-10 p-2 text-gray-400 hover:text-white hover:bg-gray-700/50 rounded-full transition-all duration-300"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
+        <div className="p-8 md:p-12">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 bg-gradient-to-br from-orange-500/20 to-green-500/20 rounded-full">
+                <Calculator className="w-8 h-8 text-orange-400" />
+              </div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <span className="text-white">AI Automation</span>{' '}
+              <span className="gradient-text-accent">ROI Calculator</span>
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Discover the potential return on investment for your business with AI automation
+            </p>
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="flex justify-center mb-8">
+            <div className="flex items-center space-x-4">
+              {steps.map((stepItem, index) => (
+                <React.Fragment key={index}>
+                  <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                    step > index + 1 ? 'bg-green-500/20 text-green-400' :
+                    step === index + 1 ? 'gradient-accent text-white' :
+                    'bg-gray-700 text-gray-400'
+                  }`}>
+                    {stepItem.icon}
+                    <span className="text-sm font-medium hidden sm:inline">{stepItem.title}</span>
+                  </div>
+                  {index < steps.length - 1 && (
+                    <ArrowRight className={`w-4 h-4 ${step > index + 1 ? 'text-green-400' : 'text-gray-600'}`} />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          {/* Step Content */}
+          <div className="max-w-3xl mx-auto">
+            {step === 1 && (
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white text-center mb-8">Tell us about your team</h3>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Number of Employees
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="range"
+                        min="1"
+                        max="100"
+                        value={calculatorData.employees}
+                        onChange={(e) => handleInputChange('employees', parseInt(e.target.value))}
+                        className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                      />
+                      <div className="flex justify-between text-sm text-gray-400 mt-1">
+                        <span>1</span>
+                        <span className="font-semibold text-white text-lg">{calculatorData.employees}</span>
+                        <span>100+</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Average Hourly Rate ($)
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="range"
+                        min="20"
+                        max="200"
+                        step="5"
+                        value={calculatorData.avgHourlyRate}
+                        onChange={(e) => handleInputChange('avgHourlyRate', parseInt(e.target.value))}
+                        className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                      />
+                      <div className="flex justify-between text-sm text-gray-400 mt-1">
+                        <span>$20</span>
+                        <span className="font-semibold text-white text-lg">${calculatorData.avgHourlyRate}</span>
+                        <span>$200+</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center pt-4">
+                  <button
+                    onClick={() => setStep(2)}
+                    className="gradient-accent px-8 py-3 rounded-full font-semibold text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                  >
+                    Continue to Time Investment
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {step === 2 && (
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white text-center mb-8">Time spent on manual tasks</h3>
+                
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Hours per week spent on repetitive tasks (per employee)
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="range"
+                        min="1"
+                        max="40"
+                        value={calculatorData.hoursPerWeek}
+                        onChange={(e) => handleInputChange('hoursPerWeek', parseInt(e.target.value))}
+                        className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                      />
+                      <div className="flex justify-between text-sm text-gray-400 mt-1">
+                        <span>1hr</span>
+                        <span className="font-semibold text-white text-lg">{calculatorData.hoursPerWeek} hours</span>
+                        <span>40hrs</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Percentage of tasks that can be automated
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="range"
+                        min="10"
+                        max="90"
+                        step="5"
+                        value={calculatorData.automationPercentage}
+                        onChange={(e) => handleInputChange('automationPercentage', parseInt(e.target.value))}
+                        className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                      />
+                      <div className="flex justify-between text-sm text-gray-400 mt-1">
+                        <span>10%</span>
+                        <span className="font-semibold text-white text-lg">{calculatorData.automationPercentage}%</span>
+                        <span>90%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 justify-center pt-4">
+                  <button
+                    onClick={() => setStep(1)}
+                    className="px-6 py-3 bg-gray-700 text-white rounded-full font-medium hover:bg-gray-600 transition-colors"
+                  >
+                    Back
+                  </button>
+                  <button
+                    onClick={() => setStep(3)}
+                    className="gradient-accent px-8 py-3 rounded-full font-semibold text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                  >
+                    Continue to Business Metrics
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {step === 3 && (
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white text-center mb-8">Business information</h3>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Current Monthly Revenue ($)
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="range"
+                      min="5000"
+                      max="1000000"
+                      step="5000"
+                      value={calculatorData.currentMonthlyRevenue}
+                      onChange={(e) => handleInputChange('currentMonthlyRevenue', parseInt(e.target.value))}
+                      className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-sm text-gray-400 mt-1">
+                      <span>$5K</span>
+                      <span className="font-semibold text-white text-lg">
+                        ${calculatorData.currentMonthlyRevenue.toLocaleString()}
+                      </span>
+                      <span>$1M+</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-500/10 to-violet-500/10 border border-blue-500/30 rounded-lg p-6">
+                  <h4 className="font-semibold text-white mb-3">Current Situation Summary</h4>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-gray-400">Team Size:</span>
+                      <span className="text-white ml-2">{calculatorData.employees} employees</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Manual Hours/Week:</span>
+                      <span className="text-white ml-2">{calculatorData.employees * calculatorData.hoursPerWeek} hours</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Avg Hourly Rate:</span>
+                      <span className="text-white ml-2">${calculatorData.avgHourlyRate}</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Automation Potential:</span>
+                      <span className="text-white ml-2">{calculatorData.automationPercentage}%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 justify-center pt-4">
+                  <button
+                    onClick={() => setStep(2)}
+                    className="px-6 py-3 bg-gray-700 text-white rounded-full font-medium hover:bg-gray-600 transition-colors"
+                  >
+                    Back
+                  </button>
+                  <button
+                    onClick={calculateROI}
+                    disabled={isCalculating}
+                    className="gradient-accent px-8 py-3 rounded-full font-semibold text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isCalculating ? (
+                      <span className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Calculating...
+                      </span>
+                    ) : (
+                      'Calculate My ROI'
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {step === 4 && results && (
+              <div className="space-y-8">
+                <div className="text-center">
+                  <h3 className="text-3xl font-bold mb-4">
+                    <span className="text-white">Your AI Automation</span>{' '}
+                    <span className="gradient-text-accent">ROI Results</span>
+                  </h3>
+                  <p className="text-gray-300">Based on your inputs, here's what AI automation could do for your business:</p>
+                </div>
+
+                {/* Key Metrics */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="bg-gradient-to-br from-green-500/20 to-green-400/20 border border-green-500/30 rounded-lg p-6 text-center">
+                    <DollarSign className="w-8 h-8 text-green-400 mx-auto mb-3" />
+                    <div className="text-2xl font-bold text-white mb-1">
+                      ${results.annualSavings.toLocaleString()}
+                    </div>
+                    <div className="text-sm text-gray-300">Annual Savings</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-400/20 border border-blue-500/30 rounded-lg p-6 text-center">
+                    <Clock className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+                    <div className="text-2xl font-bold text-white mb-1">
+                      {Math.round(results.hoursFreedWeekly)}
+                    </div>
+                    <div className="text-sm text-gray-300">Hours Freed Weekly</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-violet-500/20 to-violet-400/20 border border-violet-500/30 rounded-lg p-6 text-center">
+                    <TrendingUp className="w-8 h-8 text-violet-400 mx-auto mb-3" />
+                    <div className="text-2xl font-bold text-white mb-1">
+                      {Math.round(results.roi)}%
+                    </div>
+                    <div className="text-sm text-gray-300">ROI</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-orange-500/20 to-orange-400/20 border border-orange-500/30 rounded-lg p-6 text-center">
+                    <Zap className="w-8 h-8 text-orange-400 mx-auto mb-3" />
+                    <div className="text-2xl font-bold text-white mb-1">
+                      {Math.round(results.paybackMonths)}
+                    </div>
+                    <div className="text-sm text-gray-300">Months to Payback</div>
+                  </div>
+                </div>
+
+                {/* Detailed Breakdown */}
+                <div className="bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-lg p-6">
+                  <h4 className="font-semibold text-white mb-4">Detailed Impact Analysis</h4>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h5 className="text-sm font-medium text-gray-300 mb-3">Time Savings</h5>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex justify-between">
+                          <span className="text-gray-400">Weekly hours freed:</span>
+                          <span className="text-white">{Math.round(results.hoursFreedWeekly)} hours</span>
+                        </li>
+                        <li className="flex justify-between">
+                          <span className="text-gray-400">Monthly hours freed:</span>
+                          <span className="text-white">{Math.round(results.hoursFreedMonthly)} hours</span>
+                        </li>
+                        <li className="flex justify-between">
+                          <span className="text-gray-400">Annual hours freed:</span>
+                          <span className="text-white">{Math.round(results.hoursFreedMonthly * 12)} hours</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-sm font-medium text-gray-300 mb-3">Financial Impact</h5>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex justify-between">
+                          <span className="text-gray-400">Monthly savings:</span>
+                          <span className="text-white">${Math.round(results.monthlySavings).toLocaleString()}</span>
+                        </li>
+                        <li className="flex justify-between">
+                          <span className="text-gray-400">Annual savings:</span>
+                          <span className="text-white">${Math.round(results.annualSavings).toLocaleString()}</span>
+                        </li>
+                        <li className="flex justify-between">
+                          <span className="text-gray-400">Potential growth:</span>
+                          <span className="text-white">{Math.round(results.projectedGrowth)}%</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="text-center bg-gradient-to-br from-blue-500/10 to-violet-500/10 border border-blue-500/30 rounded-lg p-8">
+                  <h4 className="text-xl font-bold text-white mb-3">Ready to Transform Your Business?</h4>
+                  <p className="text-gray-300 mb-6">
+                    These results are just the beginning. Let's discuss how to make this vision a reality for your business.
+                  </p>
+                  <button
+                    onClick={onClose}
+                    className="gradient-accent px-8 py-4 rounded-full font-semibold text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                  >
+                    Book Your Strategy Call
+                  </button>
+                </div>
+
+                <div className="text-center">
+                  <button
+                    onClick={() => {
+                      setStep(1);
+                      setResults(null);
+                    }}
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    Calculate Again
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ROICalculator;

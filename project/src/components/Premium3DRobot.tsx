@@ -216,7 +216,7 @@ function Scene({ hover, clicked }: { hover: boolean; clicked: boolean }) {
             color="#00bfff"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter-bold.woff"
+            // Using system font instead of external font file
           >
             AI Assistant Ready
           </Text>

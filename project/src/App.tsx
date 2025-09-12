@@ -3,9 +3,14 @@ import { ChevronRight, Zap, Target, Rocket, Shield, Brain, Users, Code, Trending
 import Modal from './components/Modal';
 import CTAButton from './components/CTAButton';
 import Premium3DRobot from './components/Premium3DRobot';
+import VisualProof from './components/VisualProof';
+import ROICalculator from './components/ROICalculator';
+import UrgencyElements from './components/UrgencyElements';
+import WorkflowDiagram from './components/WorkflowDiagram';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,6 +23,9 @@ function App() {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  
+  const openCalculator = () => setIsCalculatorOpen(true);
+  const closeCalculator = () => setIsCalculatorOpen(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,7 +87,7 @@ function App() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto text-enhanced-loose">
             Transform your business operations with intelligent automation. 
             Mentis Liberum delivers explosive growth by eliminating manual work, 
             boosting revenue, and future-proofing your competitive edge.
@@ -119,7 +127,7 @@ function App() {
               <br />
               <span className="text-white">Choose Mentis Liberum</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto text-enhanced">
               We don't just automate processes—we transform your entire business operation 
               to unlock unprecedented growth and competitive advantage.
             </p>
@@ -155,18 +163,18 @@ function App() {
               <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10">
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-6">
                     <div className="p-3 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-xl text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
                       {item.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-100 transition-colors duration-300">
+                  <h3 className="text-xl font-bold mb-4 text-white group-hover:text-blue-100 transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="text-gray-400 mb-4 leading-relaxed">
+                  <p className="text-gray-400 mb-6 text-enhanced">
                     {item.description}
                   </p>
-                  <div className="text-sm font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  <div className="text-sm font-bold gradient-text-accent">
                     {item.metric}
                   </div>
                 </div>
@@ -194,7 +202,7 @@ function App() {
                 Running on Autopilot
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto text-enhanced">
               Transform from overwhelmed business owner to strategic visionary. 
               Here's what freedom of mind actually looks like.
             </p>
@@ -281,18 +289,24 @@ function App() {
         </div>
       </section>
 
+      {/* Visual Proof Section */}
+      <VisualProof onOpenCalculator={openCalculator} />
+
+      {/* Workflow Diagram Section */}
+      <WorkflowDiagram />
+
       {/* Services Section */}
       <section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+              <span className="gradient-text-accent">
                 Transform Every Aspect
               </span>
               <br />
               <span className="text-white">of Your Business</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto text-enhanced">
               Our comprehensive suite of AI-powered solutions covers every touchpoint 
               of your business operations, from automation to strategic growth.
             </p>
@@ -337,23 +351,23 @@ function App() {
                 benefits: ["Leadership development", "Industry trend insights", "Competitive intelligence"]
               }
             ].map((service, index) => (
-              <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700/30 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700/30 hover:border-orange-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-green-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10">
                   <div className="flex items-center mb-6">
-                    <div className="p-3 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-xl text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                    <div className="p-4 bg-gradient-to-br from-orange-500/20 to-green-500/20 rounded-xl text-orange-400 group-hover:text-orange-300 transition-colors duration-300">
                       {service.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-white group-hover:text-blue-100 transition-colors duration-300">
+                  <h3 className="text-xl font-bold mb-4 text-white group-hover:text-orange-100 transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-gray-400 mb-6 leading-relaxed">
+                  <p className="text-gray-400 mb-6 text-enhanced">
                     {service.description}
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {service.benefits.map((benefit, benefitIndex) => (
-                      <li key={benefitIndex} className="flex items-center gap-2 text-sm text-gray-300">
+                      <li key={benefitIndex} className="flex items-center gap-3 text-sm text-gray-300">
                         <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
                         {benefit}
                       </li>
@@ -468,6 +482,12 @@ function App() {
         </div>
       </section>
 
+      {/* Urgency Elements */}
+      <UrgencyElements 
+        onOpenModal={openModal}
+        onOpenCalculator={openCalculator}
+      />
+
       {/* Footer */}
       <footer className="py-12 bg-black border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -506,13 +526,19 @@ function App() {
         </div>
       </footer>
 
-      {/* Modal Component */}
+      {/* Modal Components */}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
         formData={formData}
         onFormChange={handleChange}
         onFormSubmit={handleSubmit}
+      />
+      
+      {/* ROI Calculator */}
+      <ROICalculator 
+        isOpen={isCalculatorOpen}
+        onClose={closeCalculator}
       />
     </div>
   );
