@@ -135,3 +135,130 @@ body.modal-open {
   background: var(--color-neutral-800);
   border-radius: 5px;
 }
+
+/* Force desktop layout on all devices */
+@media screen and (max-width: 1199px) {
+  body {
+    min-width: 1200px;
+  }
+  
+  /* Ensure all containers maintain desktop spacing */
+  .max-w-7xl {
+    max-width: 80rem !important;
+  }
+  
+  /* Force desktop grid layouts */
+  .grid.lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  .grid.lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  
+  .grid.lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+  
+  .grid.lg\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+  
+  /* Force desktop text alignment */
+  .lg\:text-left {
+    text-align: left !important;
+  }
+  
+  .lg\:text-right {
+    text-align: right !important;
+  }
+  
+  /* Force desktop visibility/hiding */
+  .lg\:block {
+    display: block !important;
+  }
+  
+  .lg\:hidden {
+    display: none !important;
+  }
+  
+  /* Force desktop flex layouts */
+  .lg\:flex {
+    display: flex !important;
+  }
+  
+  .lg\:flex-row {
+    flex-direction: row !important;
+  }
+  
+  .lg\:justify-start {
+    justify-content: flex-start !important;
+  }
+  
+  /* Force desktop spacing */
+  .lg\:gap-16 {
+    gap: 4rem !important;
+  }
+  
+  .lg\:gap-12 {
+    gap: 3rem !important;
+  }
+  
+  .lg\:gap-8 {
+    gap: 2rem !important;
+  }
+}
+
+/* Additional styles for force-desktop class */
+body.force-desktop {
+  min-width: 1200px !important;
+  overflow-x: auto;
+}
+
+/* Ensure all responsive classes work as desktop on mobile */
+body.force-desktop .sm\:text-6xl {
+  font-size: 3.75rem !important;
+  line-height: 1 !important;
+}
+
+body.force-desktop .sm\:text-5xl {
+  font-size: 3rem !important;
+  line-height: 1 !important;
+}
+
+body.force-desktop .sm\:flex-row {
+  flex-direction: row !important;
+}
+
+body.force-desktop .sm\:gap-4 {
+  gap: 1rem !important;
+}
+
+body.force-desktop .md\:grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+body.force-desktop .md\:grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+body.force-desktop .md\:grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+body.force-desktop .md\:text-right {
+  text-align: right !important;
+}
+
+body.force-desktop .md\:flex-row {
+  flex-direction: row !important;
+}
+
+/* Force desktop sizing for interactive elements */
+body.force-desktop .w-80 {
+  width: 20rem !important;
+}
+
+body.force-desktop .h-80 {
+  height: 20rem !important;
+}

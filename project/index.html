@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=1200, initial-scale=0.5, minimum-scale=0.3, maximum-scale=2.0, user-scalable=yes" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://prod.spline.design https://my.spline.design; object-src 'none'; connect-src 'self' https://prod.spline.design https://my.spline.design;" />
     <title>Mentis Liberum - AI Business Automation Consultancy | Scale Faster with AI</title>
     <meta name="description" content="Transform your business with AI automation. Mentis Liberum eliminates manual work, boosts revenue, and delivers freedom of mind through intelligent business solutions." />
@@ -11,6 +11,39 @@
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Force Desktop View Script -->
+    <script>
+      (function() {
+        function forceDesktopView() {
+          // Force desktop viewport
+          const viewport = document.querySelector('meta[name="viewport"]');
+          if (viewport) {
+            viewport.setAttribute('content', 'width=1200, initial-scale=0.5, minimum-scale=0.3, maximum-scale=2.0, user-scalable=yes');
+          }
+          
+          // Add desktop class to body for additional styling control
+          document.body.classList.add('force-desktop');
+          
+          // Set minimum body width
+          document.body.style.minWidth = '1200px';
+        }
+        
+        // Run immediately
+        forceDesktopView();
+        
+        // Also run when DOM is loaded
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', forceDesktopView);
+        }
+        
+        // Handle orientation changes on mobile
+        window.addEventListener('orientationchange', function() {
+          setTimeout(forceDesktopView, 100);
+        });
+      })();
+    </script>
+    
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
