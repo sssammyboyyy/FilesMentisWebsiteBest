@@ -1,7 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin, ArrowRight, Brain, Zap, Shield, Clock, ChevronRight } from 'lucide-react';
 import CTAButton from './CTAButton';
-import Logo from './Logo';
 
 interface PremiumFooterProps {
   onOpenModal: () => void;
@@ -100,7 +99,14 @@ const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalcul
             {/* Brand Column */}
             <div className="lg:col-span-1">
               <div className="mb-6">
-                <Logo size="md" className="mb-4" />
+                <div className="mb-4">
+                  <span className="font-bold text-2xl bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    Mentis Liberum
+                  </span>
+                  <div className="text-sm text-gray-400 font-medium mt-1">
+                    AI Business Automation
+                  </div>
+                </div>
                 <p className="text-gray-400 mb-4">
                   Freedom of Mind, Powered by AI
                 </p>
@@ -201,11 +207,10 @@ const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalcul
 
           {/* Stats Section */}
           <div className="mb-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-b border-gray-800">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-t border-b border-gray-800">
               {[
                 { number: "500+", label: "Processes Automated" },
                 { number: "98%", label: "Client Satisfaction" },
-                { number: "$50M+", label: "Revenue Generated" },
                 { number: "24/7", label: "Support Available" }
               ].map((stat, index) => (
                 <div key={index} className="text-center">

@@ -418,11 +418,10 @@ function App() {
           </div>
 
           {/* Trust Indicators */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {[
               { number: "500+", label: "Processes Automated" },
               { number: "98%", label: "Client Satisfaction" },
-              { number: "$50M+", label: "Revenue Generated" },
               { number: "24/7", label: "Support Available" }
             ].map((stat, index) => (
               <div key={index} className="text-center">

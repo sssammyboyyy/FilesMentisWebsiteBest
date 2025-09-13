@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import Logo from './Logo';
 import CTAButton from './CTAButton';
 
 interface HeaderProps {
@@ -42,9 +41,11 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Brand Name */}
           <div className="flex-shrink-0">
-            <Logo size="sm" />
+            <span className="font-bold text-xl bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Mentis Liberum
+            </span>
           </div>
 
           {/* Desktop Navigation */}
