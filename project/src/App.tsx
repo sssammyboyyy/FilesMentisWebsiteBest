@@ -127,7 +127,7 @@ function App() {
                 description: "My operational frameworks position your business for premium acquisitions or successful IPO with maximum valuation multipliers",
                 metric: "Exit-optimized architecture"
               }
-            ]
+            ].map((item, index) => (
               <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10">
@@ -147,7 +147,7 @@ function App() {
                   </div>
                 </div>
               </div>
-            ))}
+            ))
           </div>
 
           {/* Strategic CTA after value props */}
