@@ -320,7 +320,7 @@ function App() {
                 description: "I architect unfair advantages that make competition irrelevant. While others play catch-up, you'll own your market through intelligent automation and strategic positioning.",
                 benefits: ["Monopolistic market advantages", "Competitor-proof business moats", "Industry-leading innovation"]
               }
-            ]
+            ].map((service, index) => (
               <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700/30 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10">
@@ -403,7 +403,7 @@ function App() {
                 description: "My revenue architecture and operational systems are designed to position businesses for premium acquisitions or successful IPOs, creating 10x valuation multipliers.",
                 icon: <Rocket className="w-8 h-8" />
               }
-            ]
+            ].map((credential, index) => (
               <div key={index} className="p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700/50 group hover:border-blue-500/30 transition-all duration-300">
                 <div className="flex items-center mb-6">
                   <div className="p-3 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-xl text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
