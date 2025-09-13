@@ -9,6 +9,7 @@ import UrgencyElements from './components/UrgencyElements';
 import WorkflowDiagram from './components/WorkflowDiagram';
 import InteractiveHero from './components/InteractiveHero';
 import PremiumFooter from './components/PremiumFooter';
+import Header from './components/Header';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,6 +56,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Header with Logo */}
+      <Header onOpenModal={openModal} />
+      
       {/* Interactive Hero Section */}
       <InteractiveHero onOpenModal={openModal} />
 

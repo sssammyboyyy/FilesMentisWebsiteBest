@@ -118,25 +118,31 @@ function PremiumRobotMesh({ hover, clicked }: { hover: boolean; clicked: boolean
   const eyeLeftRef = useRef<THREE.Mesh>(null);
   const eyeRightRef = useRef<THREE.Mesh>(null);
 
-  // Premium metallic material
-  const metalMaterial = new THREE.MeshStandardMaterial({
-    color: '#8dd3c7',
-    metalness: 0.9,
-    roughness: 0.1,
-    envMapIntensity: 1.5,
+  // Premium luxury materials for peace of mind aesthetic
+  const premiumGoldMaterial = new THREE.MeshStandardMaterial({
+    color: '#ffd700',
+    metalness: 0.95,
+    roughness: 0.05,
+    envMapIntensity: 2.5,
   });
 
-  const chromeMaterial = new THREE.MeshStandardMaterial({
-    color: '#ffffff',
+  const platinumMaterial = new THREE.MeshStandardMaterial({
+    color: '#e5e4e2',
     metalness: 1,
     roughness: 0,
-    envMapIntensity: 2,
+    envMapIntensity: 3,
   });
 
-  const glowMaterial = new THREE.MeshStandardMaterial({
-    color: '#00bfff',
-    emissive: '#00bfff',
-    emissiveIntensity: hover ? 0.3 : 0.1,
+  const peacefulBlueMaterial = new THREE.MeshStandardMaterial({
+    color: '#4a90e2',
+    emissive: '#4a90e2',
+    emissiveIntensity: hover ? 0.4 : 0.2,
+  });
+
+  const trustGreenMaterial = new THREE.MeshStandardMaterial({
+    color: '#22c55e',
+    emissive: '#22c55e',
+    emissiveIntensity: hover ? 0.3 : 0.15,
   });
 
   // Animations

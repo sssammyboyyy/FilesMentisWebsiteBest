@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin, ArrowRight, Brain, Zap, Shield, Clock, ChevronRight } from 'lucide-react';
 import CTAButton from './CTAButton';
+import Logo from './Logo';
 
 interface PremiumFooterProps {
   onOpenModal: () => void;
@@ -99,9 +100,7 @@ const PremiumFooter: React.FC<PremiumFooterProps> = ({ onOpenModal, onOpenCalcul
             {/* Brand Column */}
             <div className="lg:col-span-1">
               <div className="mb-6">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mb-2">
-                  Mentis Liberum
-                </h3>
+                <Logo size="md" className="mb-4" />
                 <p className="text-gray-400 mb-4">
                   Freedom of Mind, Powered by AI
                 </p>
