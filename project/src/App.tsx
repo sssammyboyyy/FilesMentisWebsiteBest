@@ -147,7 +147,7 @@ function App() {
                   </div>
                 </div>
               </div>
-            ))
+            ))}
           </div>
 
           {/* Strategic CTA after value props */}
