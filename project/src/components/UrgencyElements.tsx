@@ -94,7 +94,7 @@ const UrgencyElements: React.FC<UrgencyElementsProps> = ({ onOpenModal, onOpenCa
                     Available
                   </span>
                 </div>
-              ))
+              ))}
             </div>
 
             <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-4">
