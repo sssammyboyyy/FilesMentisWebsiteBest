@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, Zap, Target, Rocket, Shield, Brain, Users, Code, TrendingUp, MessageCircle, Star, ArrowRight, CheckCircle, Clock, DollarSign, TrendingDown } from 'lucide-react';
 import Modal from './components/Modal';
+import CalendlyModal from './components/CalendlyModal';
 import CTAButton from './components/CTAButton';
 import Premium3DRobot from './components/Premium3DRobot';
 import VisualProof from './components/VisualProof';
@@ -15,6 +16,7 @@ import Blog from './components/Blog';
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+  const [isCalendlyModalOpen, setIsCalendlyModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,6 +32,44 @@ function App() {
   
   const openCalculator = () => setIsCalculatorOpen(true);
   const closeCalculator = () => setIsCalculatorOpen(false);
+  
+  const openCalendlyModal = () => setIsCalendlyModalOpen(true);
+  const closeCalendlyModal = () => setIsCalendlyModalOpen(false);
+
+  // Generic webhook trigger for CTAs
+  const triggerWebhook = async (source: string, additionalData: any = {}) => {
+    try {
+      const response = await fetch('http://localhost:5678/webhook-test/df296120-86c0-4bce-a8d7-2ea58478d15e', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          source,
+          timestamp: new Date().toISOString(),
+          ...additionalData
+        })
+      });
+      
+      if (response.ok) {
+        // Open Calendly modal for scheduling after webhook trigger
+        setTimeout(() => {
+          openCalendlyModal();
+        }, 500);
+      } else {
+        console.error('Webhook failed:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Webhook error:', error);
+    }
+  };
+
+  // Enhanced modal handler for form submissions
+  const handleModalOpen = () => {
+    openModal();
+    // Also trigger webhook to track modal opens
+    triggerWebhook('Modal Opened', { action: 'contact_form_viewed' });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,7 +100,10 @@ function App() {
           budget: '',
           systemDescription: ''
         });
-        alert('Thank you! We\'ll be in touch soon.');
+        // Open Calendly modal for scheduling
+        setTimeout(() => {
+          openCalendlyModal();
+        }, 500);
       } else {
         alert('There was an issue submitting your request. Please try again.');
       }
@@ -79,10 +122,10 @@ function App() {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Header with Logo */}
-      <Header onOpenModal={openModal} />
+      <Header onOpenModal={handleModalOpen} />
       
       {/* Interactive Hero Section */}
-      <InteractiveHero onOpenModal={openModal} />
+      <InteractiveHero onOpenModal={handleModalOpen} />
 
       {/* Value Proposition Section */}
       <section id="value" className="py-20 bg-gradient-to-b from-black to-gray-900">
@@ -152,7 +195,7 @@ function App() {
 
           {/* Strategic CTA after value props */}
           <div className="mt-16 text-center">
-            <CTAButton onClick={openModal} size="lg">
+            <CTAButton onClick={handleModalOpen} size="lg">
               Start Your AI Transformation
             </CTAButton>
           </div>
@@ -250,7 +293,7 @@ function App() {
             <p className="text-lg text-gray-300 mb-6">
               Ready to experience this transformation for your business?
             </p>
-            <CTAButton onClick={openModal} size="lg">
+            <CTAButton onClick={handleModalOpen} size="lg">
               Claim Your Freedom of Mind
             </CTAButton>
           </div>
@@ -475,6 +518,12 @@ function App() {
       <ROICalculator 
         isOpen={isCalculatorOpen}
         onClose={closeCalculator}
+      />
+      
+      {/* Calendly Modal */}
+      <CalendlyModal 
+        isOpen={isCalendlyModalOpen}
+        onClose={closeCalendlyModal}
       />
     </div>
   );

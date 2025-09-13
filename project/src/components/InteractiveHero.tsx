@@ -91,12 +91,12 @@ const InteractiveHero: React.FC<InteractiveHeroProps> = ({ onOpenModal }) => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-violet-500/10 border border-blue-500/20 rounded-full px-6 py-3 mb-8">
-              <TrendingUp className="w-5 h-5 text-blue-400" />
-              <span className="text-blue-300 font-medium">Strategic Revenue Transformation</span>
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-violet-500/10 border border-blue-500/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+              <span className="text-blue-300 font-medium text-sm sm:text-base">Strategic Revenue Transformation</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight mt-4 sm:mt-0">
               <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
                 Transform
               </span>
