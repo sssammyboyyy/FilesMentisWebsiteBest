@@ -32,7 +32,7 @@ const InteractiveHero: React.FC<InteractiveHeroProps> = ({ onOpenModal }) => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pb-16 md:pb-8">
       {/* Animated Wave Background */}
       <div className="absolute inset-0">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
@@ -92,30 +92,30 @@ const InteractiveHero: React.FC<InteractiveHeroProps> = ({ onOpenModal }) => {
           {/* Left Content */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-violet-500/10 border border-blue-500/20 rounded-full px-6 py-3 mb-8">
-              <Waves className="w-5 h-5 text-blue-400" />
-              <span className="text-blue-300 font-medium">Experience True Peace of Mind</span>
+              <TrendingUp className="w-5 h-5 text-blue-400" />
+              <span className="text-blue-300 font-medium">Strategic Revenue Transformation</span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-                Freedom
+              <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                Transform
               </span>
               <br />
-              <span className="text-white">Through AI</span>
+              <span className="text-white">Your Business Into a</span>
               <br />
-              <span className="gradient-text-accent">Automation</span>
+              <span className="gradient-text-accent">Revenue Machine</span>
             </h1>
 
             <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-2xl text-enhanced-loose">
-              Stop drowning in manual work. Let AI handle the routine while you focus on what truly matters—growing your business and living your life.
+              I partner with ambitious executives to architect revenue systems that scale without limits. While your competitors struggle with manual processes, you'll dominate with intelligent automation.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <CTAButton onClick={onOpenModal} variant="accent" size="lg">
-                Discover Your Freedom
+                Partner With Me
               </CTAButton>
               <CTAButton onClick={onOpenModal} variant="secondary" size="lg">
-                Watch Demo
+                Executive Strategy Session
               </CTAButton>
             </div>
 
@@ -123,23 +123,23 @@ const InteractiveHero: React.FC<InteractiveHeroProps> = ({ onOpenModal }) => {
             <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>No Risk Assessment</span>
+                <span>Strategic Growth Partner</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>24h Response Time</span>
+                <span>Board-Level Revenue Advisor</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>Results Guaranteed</span>
+                <span>International Business Leader</span>
               </div>
             </div>
           </div>
 
           {/* Right Interactive Visualization */}
-          <div className="relative">
+          <div className="relative mt-8 lg:mt-0">
             {/* Central Hub */}
-            <div className="relative w-80 h-80 mx-auto">
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto">
               {/* Main Circle */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-violet-500/20 border-2 border-blue-500/30 backdrop-blur-sm">
                 <div className="absolute inset-4 rounded-full bg-gradient-to-br from-gray-800/80 to-gray-900/80 border border-gray-600/50 flex items-center justify-center">
@@ -155,7 +155,7 @@ const InteractiveHero: React.FC<InteractiveHeroProps> = ({ onOpenModal }) => {
               {metrics.map((metric, index) => {
                 const angle = (index / metrics.length) * 360;
                 const isActive = activeMetric === index;
-                const radius = 140;
+                const radius = window.innerWidth < 640 ? 120 : 140; // Smaller radius on mobile
                 const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
                 const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
 
@@ -170,7 +170,7 @@ const InteractiveHero: React.FC<InteractiveHeroProps> = ({ onOpenModal }) => {
                       top: `calc(50% + ${y}px - 40px)`,
                     }}
                   >
-                    <div className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
+                    <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
                       isActive
                         ? 'bg-gradient-to-br from-orange-500/30 to-green-500/30 border-2 border-orange-400/60 shadow-lg shadow-orange-500/25'
                         : 'bg-gradient-to-br from-gray-700/50 to-gray-800/50 border border-gray-600/50'
@@ -186,7 +186,7 @@ const InteractiveHero: React.FC<InteractiveHeroProps> = ({ onOpenModal }) => {
                     
                     {/* Metric Display */}
                     {isActive && (
-                      <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-center animate-slideUp">
+                      <div className="absolute -bottom-12 sm:-bottom-16 left-1/2 transform -translate-x-1/2 text-center animate-slideUp">
                         <div className="bg-black/80 backdrop-blur-sm border border-orange-500/30 rounded-lg px-4 py-2">
                           <div className="text-2xl font-bold gradient-text-accent">{metric.value}</div>
                           <div className="text-xs text-gray-300 whitespace-nowrap">{metric.label}</div>

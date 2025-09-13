@@ -2,16 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Custom Properties for enhanced color scheme */
+/* CSS Custom Properties for simplified color scheme */
 :root {
-  --color-primary-blue: #3b82f6;
-  --color-primary-violet: #8b5cf6;
-  --color-primary-cyan: #06b6d4;
-  --color-accent-orange: #f97316;
-  --color-accent-green: #10b981;
-  --color-accent-yellow: #f59e0b;
+  --color-primary-blue: #1e40af;
+  --color-primary-violet: #7c3aed;
+  --color-accent-gold: #f59e0b;
   --color-success: #22c55e;
-  --color-warning: #f59e0b;
   --color-error: #ef4444;
   --color-neutral-100: #f5f5f5;
   --color-neutral-800: #1f2937;
@@ -42,11 +38,11 @@
 }
 
 .gradient-accent {
-  background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-green));
+  background: linear-gradient(135deg, var(--color-primary-blue), var(--color-accent-gold));
 }
 
 .gradient-text-accent {
-  background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-green));
+  background: linear-gradient(135deg, var(--color-primary-violet), var(--color-accent-gold));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

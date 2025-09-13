@@ -73,8 +73,8 @@ const ROICalculator: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
     };
     
     try {
-      // Send to n8n webhook (same as existing modal)
-      const response = await fetch('YOUR_N8N_WEBHOOK_URL', {
+      // Send to n8n webhook
+      const response = await fetch('http://localhost:5678/webhook-test/df296120-86c0-4bce-a8d7-2ea58478d15e', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,12 +86,12 @@ const ROICalculator: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
         // Success - show thank you message or close
         setStep(6); // Thank you step
       } else {
-        console.error('Form submission failed');
-        // Handle error
+        // Handle form submission error
+        alert('There was an issue submitting your request. Please try again.');
       }
     } catch (error) {
-      console.error('Form submission error:', error);
-      // Handle error
+      // Handle network or other errors
+      alert('There was an issue submitting your request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

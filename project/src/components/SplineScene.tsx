@@ -12,7 +12,7 @@ const SplineScene: React.FC<SplineSceneProps> = ({
   className = "", 
   fallbackContent 
 }) => {
-  console.log('SplineScene rendered with URL:', sceneUrl);
+  // SplineScene component initialized
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -29,12 +29,15 @@ const SplineScene: React.FC<SplineSceneProps> = ({
   }, []);
 
   const handleLoad = () => {
-    console.log('Spline scene loaded successfully!');
+    // Scene loaded successfully
     setIsLoading(false);
   };
 
   const handleError = (error: any) => {
-    console.error('Spline scene failed to load:', error);
+    // Handle scene loading error gracefully
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Spline scene failed to load:', error);
+    }
     setIsLoading(false);
     setHasError(true);
   };

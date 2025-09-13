@@ -10,6 +10,7 @@ import WorkflowDiagram from './components/WorkflowDiagram';
 import InteractiveHero from './components/InteractiveHero';
 import PremiumFooter from './components/PremiumFooter';
 import Header from './components/Header';
+import Blog from './components/Blog';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,21 +31,42 @@ function App() {
   const openCalculator = () => setIsCalculatorOpen(true);
   const closeCalculator = () => setIsCalculatorOpen(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-    closeModal();
-    // Reset form after submission
-    setFormData({
-      name: '',
-      email: '',
-      website: '',
-      services: '',
-      timeline: '',
-      budget: '',
-      systemDescription: ''
-    });
+    
+    try {
+      // Send to n8n webhook
+      const response = await fetch('http://localhost:5678/webhook-test/df296120-86c0-4bce-a8d7-2ea58478d15e', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: 'Main Contact Form',
+          timestamp: new Date().toISOString()
+        })
+      });
+      
+      if (response.ok) {
+        closeModal();
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          website: '',
+          services: '',
+          timeline: '',
+          budget: '',
+          systemDescription: ''
+        });
+        alert('Thank you! We\'ll be in touch soon.');
+      } else {
+        alert('There was an issue submitting your request. Please try again.');
+      }
+    } catch (error) {
+      alert('There was an issue submitting your request. Please try again.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -67,15 +89,15 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Why Leading Businesses
+              <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                Why Visionary CEOs
               </span>
               <br />
-              <span className="text-white">Choose Mentis Liberum</span>
+              <span className="text-white">Partner With Me</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto text-enhanced">
-              We don't just automate processes—we transform your entire business operation 
-              to unlock unprecedented growth and competitive advantage.
+              I don't implement solutions—I architect business empires. My clients don't just grow revenue; 
+              they reshape entire industries and create market-dominating competitive moats.
             </p>
           </div>
 
@@ -83,29 +105,29 @@ function App() {
             {[
               {
                 icon: <Rocket className="w-8 h-8" />,
-                title: "Scale Faster with AI",
-                description: "Automate complex workflows and scale operations without adding headcount",
-                metric: "3x faster growth"
-              },
-              {
-                icon: <Clock className="w-8 h-8" />,
-                title: "Reclaim Your Time",
-                description: "Eliminate 70% of manual tasks and focus on strategic initiatives that drive revenue",
-                metric: "40+ hours saved weekly"
+                title: "Market Domination",
+                description: "I architect revenue systems that position you as the undisputed market leader while competitors struggle to keep up",
+                metric: "10x competitive advantage"
               },
               {
                 icon: <DollarSign className="w-8 h-8" />,
-                title: "Multiply Revenue",
-                description: "Intelligent systems that identify opportunities and convert leads 24/7",
-                metric: "250% ROI average"
+                title: "Exponential Revenue Growth",
+                description: "My revenue architecture creates compounding growth systems that scale from 7-figures to 9-figures predictably",
+                metric: "500% revenue acceleration"
+              },
+              {
+                icon: <Brain className="w-8 h-8" />,
+                title: "Strategic Decision Intelligence",
+                description: "Real-time business intelligence that gives you omniscient control over every revenue driver and market opportunity",
+                metric: "Predictive market insights"
               },
               {
                 icon: <Shield className="w-8 h-8" />,
-                title: "Future-Proof Operations",
-                description: "Stay ahead of competition with cutting-edge AI solutions and strategic guidance",
-                metric: "5+ years ahead"
+                title: "Acquisition-Ready Valuation",
+                description: "My operational frameworks position your business for premium acquisitions or successful IPO with maximum valuation multipliers",
+                metric: "Exit-optimized architecture"
               }
-            ].map((item, index) => (
+            ]
               <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10">
@@ -249,65 +271,65 @@ function App() {
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
               <span className="gradient-text-accent">
-                Transform Every Aspect
+                Executive Revenue
               </span>
               <br />
-              <span className="text-white">of Your Business</span>
+              <span className="text-white">Transformation Partnerships</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto text-enhanced">
-              Our comprehensive suite of AI-powered solutions covers every touchpoint 
-              of your business operations, from automation to strategic growth.
+              I architect comprehensive revenue systems that position you as the market leader. 
+              These are not services—they are strategic partnerships that transform your business trajectory.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Zap className="w-8 h-8" />,
-                title: "Intelligent Process Automation",
-                description: "Transform repetitive workflows into smart, self-managing systems that scale with your business growth.",
-                benefits: ["Eliminate 70% of manual tasks", "24/7 operation without supervision", "Seamless integration with existing tools"]
+                icon: <TrendingUp className="w-6 h-6" />,
+                title: "Revenue Architecture Partnership",
+                description: "I design and implement enterprise-grade revenue systems that position you 5 years ahead of competition. This is comprehensive business transformation, not technical work.",
+                benefits: ["500% revenue acceleration potential", "Market-dominating competitive advantage", "Predictable 8-figure growth trajectory"]
               },
               {
-                icon: <Target className="w-8 h-8" />,
-                title: "Personal Brand Acceleration",
-                description: "AI-driven content and engagement strategies that position you as the undisputed industry leader.",
-                benefits: ["Automated content creation", "Intelligent audience targeting", "Authority building systems"]
+                icon: <Target className="w-6 h-6" />,
+                title: "Executive Growth Advisory",
+                description: "As your strategic growth partner, I architect customer acquisition and retention systems that compound your market position while you focus on vision and leadership.",
+                benefits: ["Board-level strategic guidance", "Executive decision-making support", "Market leadership positioning"]
               },
               {
-                icon: <Code className="w-8 h-8" />,
-                title: "Custom AI Applications",
-                description: "Bespoke intelligent solutions tailored to your unique business challenges and competitive advantages.",
-                benefits: ["Proprietary AI advantage", "Scalable custom solutions", "Future-proof architecture"]
+                icon: <Brain className="w-6 h-6" />,
+                title: "Business Intelligence Transformation",
+                description: "I create decision-making systems that give you unprecedented visibility and control over every revenue driver. Make data-driven decisions with absolute confidence.",
+                benefits: ["Real-time business intelligence", "Predictive growth analytics", "Strategic decision automation"]
               },
               {
-                icon: <Brain className="w-8 h-8" />,
-                title: "Strategic AI Consulting",
-                description: "Navigate the AI landscape with expert guidance that ensures maximum ROI and competitive positioning.",
-                benefits: ["Strategic AI roadmap", "Risk mitigation planning", "Technology stack optimization"]
+                icon: <Users className="w-6 h-6" />,
+                title: "International Expansion Strategy",
+                description: "Partner with me to architect scalable systems for multi-market domination. I've built revenue engines that work across currencies, cultures, and compliance requirements.",
+                benefits: ["Global market penetration", "Cross-border revenue optimization", "International competitive moats"]
               },
               {
-                icon: <Rocket className="w-8 h-8" />,
-                title: "Growth Strategy Implementation",
-                description: "Data-driven growth systems that identify opportunities and execute strategies with precision.",
-                benefits: ["Revenue optimization", "Market expansion planning", "Performance tracking systems"]
+                icon: <Rocket className="w-6 h-6" />,
+                title: "Acquisition & Exit Preparation",
+                description: "I build businesses that command premium valuations. My revenue systems and operational excellence frameworks make you the obvious acquisition target or IPO candidate.",
+                benefits: ["10x valuation multipliers", "Acquirer-ready operations", "Exit strategy optimization"]
               },
               {
-                icon: <Users className="w-8 h-8" />,
-                title: "Executive AI Mentorship",
-                description: "One-on-one guidance to master AI integration and lead your industry into the future.",
-                benefits: ["Leadership development", "Industry trend insights", "Competitive intelligence"]
+                icon: <Zap className="w-6 h-6" />,
+                title: "Competitive Domination Systems",
+                description: "I architect unfair advantages that make competition irrelevant. While others play catch-up, you'll own your market through intelligent automation and strategic positioning.",
+                benefits: ["Monopolistic market advantages", "Competitor-proof business moats", "Industry-leading innovation"]
               }
-            ].map((service, index) => (
-              <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700/30 hover:border-orange-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-green-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            ]
+              <div key={index} className="group relative p-8 bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700/30 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10">
                   <div className="flex items-center mb-6">
-                    <div className="p-4 bg-gradient-to-br from-orange-500/20 to-green-500/20 rounded-xl text-orange-400 group-hover:text-orange-300 transition-colors duration-300">
+                    <div className="p-4 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-xl text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
                       {service.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-white group-hover:text-orange-100 transition-colors duration-300">
+                  <h3 className="text-xl font-bold mb-4 text-white group-hover:text-blue-100 transition-colors duration-300">
                     {service.title}
                   </h3>
                   <p className="text-gray-400 mb-6 text-enhanced">
@@ -329,14 +351,14 @@ function App() {
           {/* CTA after services */}
           <div className="mt-16 text-center">
             <p className="text-lg text-gray-300 mb-6">
-              Which transformation will have the biggest impact on your business?
+              Ready to partner with a leader who architects business empires?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <CTAButton onClick={openModal} size="md">
-                Schedule Strategy Call
+                Explore Partnership
               </CTAButton>
               <CTAButton onClick={openModal} variant="secondary" size="md">
-                Get Custom Proposal
+                Executive Strategy Session
               </CTAButton>
             </div>
           </div>
@@ -348,53 +370,49 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              <span className="text-white">Trusted by</span>
+              <span className="text-white">Strategic</span>
               <br />
-              <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-                Industry Leaders
+              <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                Business Transformation Leader
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Forward-thinking executives choose Mentis Liberum to transform their operations 
-              and maintain competitive advantage in an AI-driven world.
+              I partner with ambitious executives to architect revenue systems that create market-dominating competitive advantages. 
+              My clients don't just grow—they reshape entire industries.
             </p>
           </div>
 
-          {/* Testimonials */}
+          {/* Authority Credentials */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[
               {
-                quote: "Mentis Liberum transformed our entire operation. We've eliminated 80% of manual processes and increased revenue by 300% in just 6 months.",
-                author: "Sarah Chen",
-                position: "CEO, TechScale Ventures",
-                rating: 5
+                title: "Executive Board Advisory",
+                credential: "C-Suite Strategic Partner",
+                description: "I advise CEOs and executive teams on business transformation strategies that create 8-figure revenue impacts and market-dominating competitive advantages.",
+                icon: <TrendingUp className="w-8 h-8" />
               },
               {
-                quote: "The automation systems they built have given us our lives back. We're scaling faster than ever while working fewer hours.",
-                author: "Marcus Rodriguez",
-                position: "Founder, Growth Dynamics",
-                rating: 5
+                title: "International Business Leadership",
+                credential: "Global Revenue Architect",
+                description: "I design and implement revenue systems for international expansion, helping ambitious leaders build multi-market business empires that competitors can't replicate.",
+                icon: <Target className="w-8 h-8" />
               },
               {
-                quote: "Their strategic guidance helped us stay 5 years ahead of competitors. The ROI has been phenomenal and continues to compound.",
-                author: "Dr. Lisa Thompson",
-                position: "Director, Innovation Labs",
-                rating: 5
+                title: "Acquisition & Exit Strategist",
+                credential: "Valuation Multiplier Specialist",
+                description: "My revenue architecture and operational systems are designed to position businesses for premium acquisitions or successful IPOs, creating 10x valuation multipliers.",
+                icon: <Rocket className="w-8 h-8" />
               }
-            ].map((testimonial, index) => (
-              <div key={index} className="p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700/50">
-                <div className="flex items-center mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+            ]
+              <div key={index} className="p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700/50 group hover:border-blue-500/30 transition-all duration-300">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-xl text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                    {credential.icon}
+                  </div>
                 </div>
-                <blockquote className="text-gray-300 mb-6 italic leading-relaxed">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div>
-                  <div className="font-semibold text-white">{testimonial.author}</div>
-                  <div className="text-sm text-gray-400">{testimonial.position}</div>
-                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{credential.title}</h3>
+                <div className="text-sm font-medium text-blue-400 mb-4">{credential.credential}</div>
+                <p className="text-gray-300 leading-relaxed">{credential.description}</p>
               </div>
             ))}
           </div>
@@ -430,6 +448,9 @@ function App() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <Blog onOpenModal={openModal} />
+      
       {/* Urgency Elements */}
       <UrgencyElements 
         onOpenModal={openModal}

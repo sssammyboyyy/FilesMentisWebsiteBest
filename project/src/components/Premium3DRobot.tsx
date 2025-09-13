@@ -19,7 +19,10 @@ class ThreeErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: any, errorInfo: any) {
-    console.log('3D Component Error:', error, errorInfo);
+    // Error logged for debugging in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('3D Component Error:', error, errorInfo);
+    }
   }
 
   render() {
@@ -143,6 +146,27 @@ function PremiumRobotMesh({ hover, clicked }: { hover: boolean; clicked: boolean
     color: '#22c55e',
     emissive: '#22c55e',
     emissiveIntensity: hover ? 0.3 : 0.15,
+  });
+
+  // Missing material definitions
+  const chromeMaterial = new THREE.MeshStandardMaterial({
+    color: '#e5e4e2',
+    metalness: 1,
+    roughness: 0.1,
+    envMapIntensity: 2,
+  });
+
+  const glowMaterial = new THREE.MeshStandardMaterial({
+    color: '#00bfff',
+    emissive: '#00bfff',
+    emissiveIntensity: hover ? 0.6 : 0.3,
+  });
+
+  const metalMaterial = new THREE.MeshStandardMaterial({
+    color: '#708090',
+    metalness: 0.9,
+    roughness: 0.2,
+    envMapIntensity: 1.5,
   });
 
   // Animations

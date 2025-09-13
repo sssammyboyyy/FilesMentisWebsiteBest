@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
             {navItems.map((item) => (
               <button
                 key={item.label}
@@ -72,6 +72,8 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-300 hover:text-white transition-colors duration-200"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
