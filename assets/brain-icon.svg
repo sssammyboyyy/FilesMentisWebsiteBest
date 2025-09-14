@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pixel-art brain with brand gradient -->
+  <defs>
+    <linearGradient id="brainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B46C1"/>
+      <stop offset="100%" style="stop-color:#10B981"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Brain outline -->
+  <rect x="8" y="4" width="16" height="4" fill="url(#brainGrad)"/>
+  <rect x="6" y="8" width="20" height="4" fill="url(#brainGrad)"/>
+  <rect x="4" y="12" width="24" height="8" fill="url(#brainGrad)"/>
+  <rect x="6" y="20" width="20" height="4" fill="url(#brainGrad)"/>
+  <rect x="8" y="24" width="16" height="4" fill="url(#brainGrad)"/>
+  
+  <!-- Brain details -->
+  <rect x="10" y="14" width="2" height="2" fill="rgba(255,255,255,0.3)"/>
+  <rect x="20" y="16" width="2" height="2" fill="rgba(255,255,255,0.3)"/>
+  <rect x="14" y="18" width="4" height="2" fill="rgba(255,255,255,0.2)"/>
+</svg>
